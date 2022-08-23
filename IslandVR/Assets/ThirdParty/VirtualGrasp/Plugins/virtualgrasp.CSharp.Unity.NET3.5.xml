@@ -1,0 +1,1310 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>virtualgrasp.CSharp.Unity.NET3.5</name>
+    </assembly>
+    <members>
+        <member name="F:VirtualGrasp.VG_Bone.m_index">
+            The index of this bone in the avatar structure
+        </member>
+        <member name="F:VirtualGrasp.VG_Bone.m_transform">
+            The Unity transform that relates to this object
+        </member>
+        <member name="F:VirtualGrasp.VG_Bone.m_transformData">
+            The VG transform data pointer that relates to this object
+        </member>
+        <member name="F:VirtualGrasp.VG_Bone.m_rigidBody">
+            Potential RigidBody on the bone for physical avatar, if have rigidbody should  not have m_articulationBody
+        </member>
+        <member name="F:VirtualGrasp.VG_Bone.m_articulationBody">
+            Potential ArticulationBody on the bone for physical avatar, if have articulationbody should not have m_rigidBody
+        </member>
+        <member name="F:VirtualGrasp.VG_Bone.m_sensorBody">
+            Potential Rigidbody used to receive sensor controlled hand bone poses for physical avatar hand control
+        </member>
+        <member name="F:VirtualGrasp.VG_Bone.m_side">
+            To which side of hand this bone belongs to, only assigned for physical avatar when creating collider now
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_avatar">
+            TODO: improve this nested structure
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_transforms">
+            Holds the transforms of the rig to be communicated with the VirtualGrasp library.
+        </member>
+        <member name="P:VirtualGrasp.VG_AvatarHandle.m_avatarID">
+            The avatar ID (should be unique, describing the identity of this avatar)
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_avatarType">
+            The avatar type (to handle different cases such as Poseable, Skeletal, ...)
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_resetPoses">
+            The reset poses when switching the controlled hands.
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_transformsHandle">
+            A caching pointer for all the avatar transforms
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_IdxToId">
+            A map of all bone indices (their position in the array) to their IDs (instance IDs).
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_bones">
+            A map of all bone handles from the transformIDs to the VG_Bones.
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_bonesByBoneType">
+            A map of all bone handles from a side and bone type to the corresponding VG_Bones.
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_bonesByFingerBonePair">
+            A map of all bone handles from a side and bone type to the corresponding VG_Bones.
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_fingerBoneMass">
+            Each finger bone's mass for articulation body, and wrist/palm is 3 times of finger bone
+        </member>
+        <member name="F:VirtualGrasp.VG_AvatarHandle.m_strength">
+            Strength scale factor to articulation drive stiffness and forcelimit, [Range(0.1f, 10f)]
+        </member>
+        <member name="M:VirtualGrasp.VG_AvatarHandle.SetupHandPhysicalArticulation">
+            <summary>
+            Setup hand using articulation body and connect with sensor body
+            An alternative method for physical hand to SetupHandRigidbodies
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_AvatarHandle.SetupHandRigidbodies">
+            <summary>
+            Setup hand as rigid bodies, not connected with joint now, and connect with sensor body
+            An alternative method for physical hand to SetupHandPhysicalArticulation
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_AvatarHandle.CreateColliders">
+            Create hand colliders from VG
+        </member>
+        <member name="T:VirtualGrasp.VG_SelectionSettings">
+            VG_SelectionSettings can be used to initialize the object and grasp selection settings.
+        </member>
+        <member name="T:VirtualGrasp.VG_DebugSettings">
+            VG_DebugSettings can be used to configure some debug options.
+        </member>
+        <member name="T:VirtualGrasp.VG_SensorSettings">
+            VG_SensorSettings is ued to configure global parameters of VirtualGrasp sensor interaction.
+            @img
+        </member>
+        <member name="T:VirtualGrasp.VG_GraspInteractionSettings">
+            VG_GlobalGraspInteractionSettings is ued to configure global parameters of VirtualGrasp grasp interaction.
+            @img
+        </member>
+        <member name="T:VirtualGrasp.VG_SensorSetup">
+            VG_SensorSetup is part of the VG_SensorConfiguration component and is used to 
+            set hand- and sensor-specific settings.
+            @img
+        </member>
+        <member name="F:VirtualGrasp.VG_SensorSetup.m_grabFilter">
+            Parameters for filter on grab strength signal
+        </member>
+        <member name="F:VirtualGrasp.VG_SensorSetup.m_positionFilter">
+            Parameters for filter on position signal
+        </member>
+        <member name="T:VirtualGrasp.VG_Affordance">
+            An object-related affordance, i.e. what interaction can be done with this object.
+            @remark bitmask convention.
+        </member>
+        <member name="T:VirtualGrasp.VG_ArticulationBase">
+            VG_ArticulationBase is an abstract class, so only inherited components (such as 
+            VG_Articulation) can be attached to an object. An articulation can be attached to 
+            an object that should follow an articulated constraint, such as a prismatic or revolute joint.
+        </member>
+        <member name="T:VirtualGrasp.VG_Articulation">
+            VG_Articulation inherits from VG_ArticulationBase. An articulation can be attached to 
+            an object that should follow an articulated constraint, such as a prismatic or revolute joint.
+            The anchor describes the axis of the constraint (such as the axis of movement for prismatic joints
+            like buttons or drawers; or the axis of rotation for revolute joints such as wheels or levers).
+            The push direction describes the direction of push for pushable objects.
+            @img
+        </member>
+        <member name="T:VirtualGrasp.VG_Interactable">
+            VG_Interactable allows to specifiy interaction parameters specifically for an object.
+            An VG_Interactable can be attached to an object that should follow a different interaction
+            behavior than defined in the global VG_SensorSettings.
+            @img
+        </member>
+        <member name="T:VirtualGrasp.VG_AvatarType">
+            An enum to descibe an avatar type 
+        </member>
+        <member name="T:VirtualGrasp.VG_QueryGraspMethod">
+            The query grasp method for GetGrasp() function
+        </member>
+        <member name="T:VirtualGrasp.VG_InteractionMode">
+            An important information for designing your gameplay with VirtualGrasp is what to do dependent on
+            what state the hand is in. For this purpose, VG_InteractionMode defines different interaction modes 
+            that are used by the library (such as grasping or empty). You can access a specific hand's mode
+            through its VG_HandStatus.
+        </member>
+        <member name="T:VirtualGrasp.VG_ReturnCode">
+            ReturnCode for various VirtualGrasp functions. 
+            Most functions in this API provide such a return code.
+        </member>
+        <member name="T:VirtualGrasp.VG_EditorAction">
+            Action towards the grasp editor, see EditGrasp()
+        </member>
+        <member name="T:VirtualGrasp.VG_AutoSetup">
+            Enum for quickly setting up projects for a specific controller / build.
+        </member>
+        <member name="T:VirtualGrasp.VG_VrButton">
+            Enum for setting which (VR) controller buttons.
+        </member>
+        <member name="T:VirtualGrasp.MatrixType">
+            MatrixType is a helper class to define specific matrix properties that are important to describe a 4x4 matrix.
+        </member>
+        <member name="M:VirtualGrasp.MatrixType.isRightHand(System.Int32)">
+            Tell if a matrix type is right-handed.
+            @param matrix_type The bit-field integer to check if right-hand flag (MATRIX_RHS) is set.
+            @return TRUE if the matrix_type's right-hand flag (MATRIX_RHS) is set.
+        </member>
+        <member name="M:VirtualGrasp.MatrixType.isRowMajor(System.Int32)">
+            Tell if a matrix type is row-major.
+            @param matrix_type The bit-field integer to check if row-major flag (MATRIX_ROWMAJ) is set.
+            @return TRUE if the matrix_type's row-major flag (MATRIX_ROWMAJ) is set.
+        </member>
+        <member name="F:VirtualGrasp.MatrixType.MATRIX_LHS">
+            Flag for left-handed matrix type
+        </member>
+        <member name="F:VirtualGrasp.MatrixType.MATRIX_RHS">
+            Flag for right-handed matrix type
+        </member>
+        <member name="F:VirtualGrasp.MatrixType.MATRIX_COLMAJ">
+            Flag for column-major matrix type
+        </member>
+        <member name="F:VirtualGrasp.MatrixType.MATRIX_ROWMAJ">
+            Flag for row-major matrix type
+        </member>
+        <member name="T:VirtualGrasp.VG_VelocityTracker">
+            VG_VelocityTracker tracks object velocity when held by a hand.
+        </member>
+        <member name="T:VirtualGrasp.VG_HandStatus">
+            VG_HandStatus is used as a helping data structure in which the most important grasp state 
+            of a hand is stored. Its use in the FixedUpdate() function of the MyVirtualGrasp.cs template
+            will provide you with a good example on how to use the VG_HandStatus from the VirtualGrasp plugin.
+        </member>
+        <member name="T:VirtualGrasp.VG_HandSide">
+            We support two hands per avatar, left and right in this enum.
+        </member>
+        <member name="T:VirtualGrasp.VG_AvatarInputType">
+            Need to know what type made the avatar registration for scaling.
+        </member>
+        <member name="T:VirtualGrasp.VG_UrdfType">
+            Avatar's hand template type represented as URDF.
+        </member>
+        <member name="T:VirtualGrasp.VG_SensorType">
+            Different sensor (or controller) types that can be used by VirtualGrasp. Note only External Controller is supported.
+        </member>
+        <member name="T:VirtualGrasp.VG_GraspType">
+            Animation grasp type enum.
+        </member>
+        <member name="T:VirtualGrasp.VG_FingerControlType">
+            An enum to describe how fingers are controlled.
+        </member>
+        <member name="T:VirtualGrasp.VG_BoneType">
+            An enum to describe a bone type, used for accessing of bones from outside the library.
+        </member>
+        <member name="T:VirtualGrasp.VG_JointType">
+            Different articulated joint types supported by VG.
+        </member>
+        <member name="T:VirtualGrasp.VG_PhysicalBy">
+            An enum to specify if an object is physical, and if physical by which unity component.
+        </member>
+        <member name="T:VirtualGrasp.VG_GraspLabel">
+            For labeling grasps (grasp editor functionality).
+        </member>
+        <member name="T:VirtualGrasp.VG_InteractionType">
+            An enum to describe a hand interaction type (i.e. a mode on grasp visualization).
+        </member>
+        <member name="T:VirtualGrasp.VG_QueryGraspMode">
+            Decide when query grasp if hand moves and how to move hand.
+        </member>
+        <member name="T:VirtualGrasp.VG_GraspSelectionMethod">
+            An enum to specify which kind of method is used for pose-based grasp selection.
+        </member>
+        <member name="T:VirtualGrasp.VG_SynthesisMethod">
+            Identifier for a grasp synthesis algorithm.
+        </member>
+        <member name="T:VirtualGrasp.VG_GraspConstraintType">
+            Specify for an object how to constrain grasp synthesis.
+        </member>
+        <member name="T:VirtualGrasp.VG_QueryObjectTransformMode">
+            Decide when query object transform which objects to get.
+        </member>
+        <member name="T:VirtualGrasp.VG_IReturnCode">
+            Return code for core API functions.
+        </member>
+        <member name="T:VirtualGrasp.VG_SelectObjectMethod">
+            Different object selection methods.
+        </member>
+        <member name="T:VirtualGrasp.VG_ObjectHandler">
+            Object handler is a class that contains all functionality related to
+            object handling and management. The PrivateController has one m_objectHandler.
+        </member>
+        <member name="T:VirtualGrasp.VG_ObjectHandler.ObjectProcessError">
+            A container for an error that can occur during object mesh processing (RegisterObjectMesh).
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.ObjectProcessError.m_error">
+            The error code
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.ObjectProcessError.m_object">
+            The object this error relates to
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.ObjectProcessError.m_message">
+            A message assigned to the error
+        </member>
+        <member name="T:VirtualGrasp.VG_ObjectHandler.VG_TransformDataListContainer">
+            A container for containing an array of transform datas that can be re-used at fixed length
+            instead of being allocated during runtime.
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.VG_TransformDataListContainer.MAX_NUM_OBJECTS">
+            The fixed array size
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.VG_TransformDataListContainer.data">
+            An array for data allocation
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.VG_TransformDataListContainer.vgTransformDataList">
+            A helper handle to that array.
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.m_objects">
+            A map to manage the object handles, keyed by their game object IDs.
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.m_objectIDs">
+            We need this list to keep the order of transforms for hierarchical operations 
+            (since the dictionary above does not assure order)
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.m_unbakedObjects">
+            A map to manage unbaked objects, mainly for debug visualization, mapping what has been gone wrong.         
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.m_objectContainer">
+            Helper class to manage object handles that are returned from VG core lib.
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.m_inHandRangeObjectIds">
+            An object which is in range and also moving, will exist only in m_inHandRangeObjectIds (updated every frame)
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.m_hiddenObjectIds">
+            List of hidden object IDs (updated every frame)
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.m_movingObjectIds">
+            List of moving object IDs (updated every frame)
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.m_sentObjectIds">
+            A objects have already been sent to VG (updated every frame)
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.m_saveDebugFiles">
+            Flag if debug files shall be exported.
+        </member>
+        <member name="F:VirtualGrasp.VG_ObjectHandler.m_updateLocalPosesInSecondStep">
+            Flag if we first update global poses and then update local for all the hierarchy of objects
+        </member>
+        <member name="M:VirtualGrasp.VG_ObjectHandler.GetSelectedVgObject(System.Int32,VirtualGrasp.VG_HandSide)">
+            Get selected object for grasp or for push interactions
+        </member>
+        <member name="T:VirtualGrasp.VG_Object">
+            A VG_Object is the main container for any interactable object.
+        </member>
+        <member name="F:VirtualGrasp.VG_Object.m_transform">
+            The Unity transform that relates to this object
+        </member>
+        <member name="F:VirtualGrasp.VG_Object.m_transformData">
+            The VG transform data pointer that relates to this object
+        </member>
+        <member name="F:VirtualGrasp.VG_Object.m_hash">
+            The hash value of this object mesh (computed by VG)
+        </member>
+        <member name="F:VirtualGrasp.VG_Object.m_rigidbody">
+            The rigid body that relates to this object.
+        </member>
+        <member name="F:VirtualGrasp.VG_Object.m_articulationbody">
+            The articulated body that relates to this object.
+        </member>
+        <member name="F:VirtualGrasp.VG_Object.m_isPhysicalBy">
+            If this object is physical or not (can change during runtime).
+        </member>
+        <member name="F:VirtualGrasp.VG_Object.m_isRootArticulationBody">
+            If this object's articulation body is a root
+        </member>
+        <member name="T:VirtualGrasp.ObjectProcessor">
+             The ObjectProcessor is a helper class to prepare and send object mesh data for being
+             processed to the library.
+        </member>
+        <member name="F:VirtualGrasp.ObjectProcessor.isValid">
+            If the content of the processor is valid
+        </member>
+        <member name="F:VirtualGrasp.ObjectProcessor.m_hash">
+            The hash of the object
+        </member>
+        <member name="F:VirtualGrasp.ObjectProcessor.m_returnCode">
+            A return code of the result of the processor
+        </member>
+        <member name="F:VirtualGrasp.ObjectProcessor.object_transform">
+            The transform data of the object
+        </member>
+        <member name="F:VirtualGrasp.ObjectProcessor.object_triangles">
+            A handle to the object triangles
+        </member>
+        <member name="F:VirtualGrasp.ObjectProcessor.object_vertices">
+            A handle to the object vertices
+        </member>
+        <member name="T:VirtualGrasp.HandleHelper`1">
+            A class that provides a handle / pointer to a templated array so it can be used as argument for a library call.
+        </member>
+        <member name="T:VirtualGrasp.SelectionInterface.GraspRequest">
+            Enum of different grasp request functions that can be called inside the library
+        </member>
+        <member name="F:VirtualGrasp.SelectionInterface.m_hands">
+            A list of the VG_HandStatus
+        </member>
+        <member name="F:VirtualGrasp.SelectionInterface.m_avatars">
+            A map to manage the avatar handles, keyed by their instance IDs.
+        </member>
+        <member name="F:VirtualGrasp.SelectionInterface.m_debugSettings">
+            Debug settings
+        </member>
+        <member name="F:VirtualGrasp.SelectionInterface.m_colliderManager">
+            Collider manager
+        </member>
+        <member name="F:VirtualGrasp.SelectionInterface.m_dbLoadState">
+            Flag to store if grasp DB could be loaded.
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.Clear">
+            Clear the SelectionInterface from all pre-registered data.
+            Can be used in case of a restart of the game.
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.Get">
+            Check if this SelectionInterface is initialized (and return a pointer to it).
+            @return Pointer to this instance if initialized, NULL otherwise.
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.Connect">
+            Connect this SelectionInterface, i.e. initialize the DLL library, 
+            and configure dependent on a configuration file.
+            @return A string containing information about the initialization stage.
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.InitializeHands(VirtualGrasp.VG_AvatarHandle)">
+            Initialize the VG_HandStatus with data from the plugin.
+            @param avatarHandle The avatar handle.
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.StopRecording(System.String)">
+            Stop recording sensor signal and store to a file
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.LoadRecording(System.String)">
+            Load recorded sensor signal from a file, but do not start replay
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.StartReplay(System.Int32,UnityEngine.Transform)">
+            Start replay all interactions on all hands in recorded SensorDB
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.StopReplay(System.Int32)">
+            Stop replay all interactions on all hands in recorded SensorDB
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.StartReplayOnObject(System.Int32,VirtualGrasp.VG_HandSide,System.Int32,System.Int32)">
+            Start replay an interaction on one object on this hand side
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.UpdateHandStatus">
+            Update the VG_HandStatus with data from the plugin.
+        </member>
+        <member name="M:VirtualGrasp.SelectionInterface.Release">
+            Release this SelectionInterface, i.e. mainly wait for closing threads, and
+            decouple the connected libraries.
+        </member>
+        <member name="T:VirtualGrasp.Interface">
+            This is the base class for each VirtualGraspInterface.
+        </member>
+        <member name="F:VirtualGrasp.Interface.m_registeredAvatars">
+            A counter of registered avatars. TODO: check if can be replaced through m_avatars.Count.
+        </member>
+        <member name="F:VirtualGrasp.Interface.m_registeredSensors">
+            A map to manage the sensor setups, keyed by the avatar IDs they refer to.
+        </member>
+        <member name="F:VirtualGrasp.Interface.m_state">
+            The current status of the interface.
+        </member>
+        <member name="F:VirtualGrasp.Interface.hSupplementaryDLLs">
+            Managing potential native dependency libraries, key: library name; value: native library handle.
+        </member>
+        <member name="F:VirtualGrasp.Interface.m_controllers">
+            A map to manage the external controllers setups, keyed by the wrist IDs they refer to.
+        </member>
+        <member name="M:VirtualGrasp.Interface.RegisterRig(VirtualGrasp.VG_AvatarHandle,VirtualGrasp.VG_SensorSetup,VirtualGrasp.VG_SensorSetup)">
+            Register a rig.
+        </member>
+        <member name="T:VirtualGrasp.VG_Controller">
+            <summary>
+            This is the VirtualGrasp main controller and the public API to be used in 
+            Unity scripts after importing the plugin into the Unity scene.
+            </summary>
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.m_selectionInterface">
+            The selection interface initialized towards the VirtualGrasp selection library.
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnInitialize">
+            <summary>
+            The event to call when we have successfully initialized the library.
+            </summary>
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnBeforeReset">
+            <summary>
+            The event to call when we are going to reset all objects in the library.
+            </summary>
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnAfterReset">
+            <summary>
+            The event to call when we have reset all objects in the library.
+            </summary>
+        </member>
+        <member name="T:VirtualGrasp.VG_Controller.VG_HandStatusEvent">
+            A class to describe events around a VG_HandStatus as signal content
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnObjectGrasped">
+            <summary>
+            This event is invoked in the frame when a hand is starting to grasp an object.
+            The VG_HandStatus it carries includes more information about the interaction.
+            </summary>
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnObjectReleased">
+            <summary>
+            This event is invoked in the frame when a hand is starting to release an object.
+            The VG_HandStatus it carries includes more information about the interaction.
+            </summary>
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnObjectFullyReleased">
+            <summary>
+            This event is invoked in the frame when an object is fully release by all hands.
+            The Transform it carries includes the object that has just been released.
+            </summary>
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnObjectSelected">
+            <summary>
+            This event is invoked in the frame when a hand is starting to select an object.
+            The VG_HandStatus it carries includes more information about the interaction.
+            </summary>
+            @tag VG_Highlighter
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnObjectDeselected">
+            <summary>
+            This event is invoked in the frame when a hand is starting to deselect an object.
+            The VG_HandStatus it carries includes more information about the interaction.
+            </summary>
+            @tag VG_Highlighter
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnObjectEnter2HandMode">
+            <summary>
+            This event is invoked in the frame when object is grasped by 2nd hand.
+            The VG_HandStatus it carries includes more information about the interaction.
+            </summary>
+            @tag VG_Highlighter
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnObjectExit2HandMode">
+            <summary>
+            This event is invoked in the frame when object is released by the 2nd grasping hand.
+            The VG_HandStatus it carries includes more information about the interaction.
+            </summary>
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnObjectCollided">
+            <summary>
+            This event is invoked when a grasped object is colliding with another object.
+            The VG_HandStatus it carries includes more information about the interaction.
+            </summary>
+            @tag VG_ExternalControllerManager
+            @tag VG_HintVisualizer
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnPreUpdate">
+            <summary>
+            This event is invoked in the fixed update loop before VG runs its update.
+            Thus, all other scripts that should update before the VG cycle should listen to this event.
+            </summary>
+        </member>
+        <member name="F:VirtualGrasp.VG_Controller.OnPostUpdate">
+            <summary>
+            This event is invoked in the fixed update loop after VG runs its update.
+            Thus, all other scripts that should update after the VG cycle should listen to this event.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.Initialize">
+            <summary>
+            Initialize the plugin.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.IsEnabled">
+            <summary>
+            Check if the plugin has been initialized and is ready to use.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetDebugPath">
+            <summary>
+            Return the path where VG stores debug files.
+            </summary>
+            <returns>The path (platform dependent).</returns>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.FixedUpdate">
+            <summary>
+            The FixedUpdate() heartbeat of the plugin.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.IsolatedUpdateDataIn">
+            <summary>
+            The FixedUpdate() method has been divided into three parts: IsolatedUpdateDataIn(), IsolatedUpdate() and IsolatedUpdateDataOut()
+            for application of the Burst compiler. IsolatedUpdateDataIn() isolates data communication from Unity to VG.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.IsolatedUpdate">
+            <summary>
+            The Update() method has been divided into three parts: IsolatedUpdateDataIn(), IsolatedUpdate() and IsolatedUpdateDataOut()
+            for application of the Burst compiler. IsolatedUpdate() runs the main update loop in VG.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.IsolatedUpdateDataOut">
+            <summary>
+            The Update() method has been divided into three parts: IsolatedUpdateDataIn(), IsolatedUpdate() and IsolatedUpdateDataOut()
+            for application of the Burst compiler. IsolatedUpdateDataOut() isolates data communication from VG to Unity.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetHands">
+            <summary>
+            Receive an enumerator of all registered hands and their status.
+            </summary>
+            <returns>Enumerator over VG_HandStatus.</returns>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetHand(System.Int32,VirtualGrasp.VG_HandSide)">
+            <summary>
+            Receive a specific hand and its status.
+            </summary>
+            <param name="avatarID">The avatar to get the hand status for.</param> 
+            <param name="side">The hand side to get the avatar from.</param> 
+            <returns>A VG_HandStatus.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:VirtualGrasp.VG_Controller.GetAvatarID(UnityEngine.SkinnedMeshRenderer,System.Int32@)" -->
+        <!-- Badly formed XML comment ignored for member "M:VirtualGrasp.VG_Controller.GetSensorControlledAvatarID(System.Int32@)" -->
+        <member name="M:VirtualGrasp.VG_Controller.RegisterSensorConfiguration">
+            <summary>
+            Register sensors, rigs and controllers to the DLL.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.RegisterAvatar(UnityEngine.SkinnedMeshRenderer,VirtualGrasp.VG_AvatarType,System.Int32@)">
+            <summary>
+            Register a new avatar during runtime.
+            </summary>
+            <param name="avatar">The skinned mesh renderer of the model that should be registered to VG.</param>
+            <param name="type">The avatar type this avatar should be.</param>
+            <param name="id">The new avatar ID will be assigned to this value after registration; -1 if it failed.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.UnRegisterAvatar(System.Int32)">
+            <summary>
+            Unregister avatar during runtime
+            </summary>
+            <param name="avatarID">avatar id to be unregistered.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.RegisterObject(UnityEngine.Transform)">
+            <summary>
+            Sync a new object in the scene to the plugin, e.g. if the object is spawned.
+            </summary>
+            <param name="obj">The object that should be synced.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.RegisterObjects(System.Collections.Generic.List{UnityEngine.Transform})">
+            <summary>
+            Sync new objects from the scene to the plugin, e.g. if these object are newly spawned.
+            </summary>
+            <param name="objects">The objects that should be synced.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.DeleteDistalObject(UnityEngine.Transform)">
+            <summary>
+            Sync deleted objects from the scene to the plugin, e.g. if the object has been deleted.
+            </summary>
+            <param name="obj">The object that has been deleted.</param>
+            @remark Works only for distal objects.
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.Clear">
+            <summary>
+            Reset the plugin.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.Release">
+            <summary>
+            Release the plugin.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SaveState">
+            <summary>
+            Save the object hierarchy debug state. This is done automatically when closing VirtualGrasp.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetBroadcastSignal(System.Byte[])">
+            <summary>
+            Set (to VG) a multiplayer broadcast message as a binary byte array.
+            </summary>
+            <param name="message">The message (raw bytes) to be sent and processed by VG.</param>
+            @tag VG_NetworkManager 
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetBroadcastSignal">
+            <summary>
+            Receive (from VG) a multiplayer broadcast message as a binary byte array.
+            </summary>
+            <returns>The message received by VG.</returns>
+            @tag VG_NetworkManager
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SelectObject(System.Int32,VirtualGrasp.VG_HandSide,UnityEngine.Transform)">
+            <summary>
+            If external object selection is used (and not the internal one that the plugin provides, 
+            use this function to sync the selected object from the scene to the plugin.
+            </summary>
+            <param name="avatarID">The ID of the avatar that the selected object should be set.</param>
+            <param name="handSide">The side of the hand that the selected object should be set.</param>
+            <param name="obj">The object that should be selected.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.JumpGraspObject(System.Int32,VirtualGrasp.VG_HandSide,UnityEngine.Transform)">
+            <summary>
+            Externally select an object and jump grasp it (object jump to hand).
+            </summary>
+            <param name="avatarID">instance avatar id (>0)</param>
+            <param name="handSide">The side of the hand</param>
+            <param name="obj">The id of externally selected object to jump grasped by this hand</param>
+            @remark Note you do NOT need to use vgsSetSelectObjectMethod() to set select object externally before call this function
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetHiddenObjects(System.Collections.Generic.List{UnityEngine.Transform})">
+            <summary>
+            Sync hidden objects between scene and plugin so that the plugin knows these are not interactable.
+            </summary>
+            <param name="transforms">An array of IDs of the objects that are hidden in the scene.</param>
+            @remark rename SetNonInteractableObjects and change to array of components?
+            @tag VG_MyVirtualGrasp
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetObjectSelectionWeight(UnityEngine.Transform,System.Single)">
+            <summary>
+            Specify the object selection weights for grasping interaction.
+            </summary>
+            <param name="obj">Which object to specify weight</param>
+            <param name="weight">Should be >=0 value to specify the preferences to select this object. If 0 exclude this object in selection process</param>
+            @remark Note by default this weight is 1 for all objects.
+            @remark Use case is mainly to specify relative selection preferences for cluttered objects.
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.ResetObject(UnityEngine.Transform)">
+            <summary>
+            Reset a specific object's initial pose and initial zero pose.
+            </summary>
+            <param name="transform">The object to reset.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.ResetAllObjects">
+            <summary>
+            Reset all objects' initial pose and initial zero pose.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetTriggerButton">
+            <summary>
+            Return the currently selected TriggerButton.
+            </summary>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetSensorPose(System.Int32,VirtualGrasp.VG_HandSide,UnityEngine.Vector3@,UnityEngine.Quaternion@,System.Boolean)">
+            <summary>
+            Receive the sensor pose of a given avatar and hand.
+            </summary>
+            <param name="avatarID">The avatar to get the pose from.</param>
+            <param name="handSide">The hand side to get the pose from.</param>
+            <param name="p">The returned position.</param>
+            <param name="q">The returned rotation.</param>
+            <param name="absolute">Set True (default) to return the absolute pose, and False to return the relative pose.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetObjectJointState(UnityEngine.Transform,System.Single@)">
+            <summary>
+            Get the current joint state of a single-dof articulated object.
+            For planar joint, the joint state along xaxis of the joint anchor.
+            </summary>
+            <param name="selectedObject">The object to get the current joint state value for.</param>
+            <param name="jointState">The returned joint state. Will be set to 0.0f upon error</param>
+            <returns>VG_ReturnCode.SUCCESS on successfull joint state fetch. VG_ReturnCode.ARGUMENT_ERROR.</returns>
+            when selectedObject is null, or VG_ReturnCode.DLL_FUNCTION_FAILED on an unexpected error.
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetObjectSecondaryJointState(UnityEngine.Transform,System.Single@)">
+            <summary>
+            Get the current secondary joint state along yaxis of joint anchor for planar articulated object.
+            </summary>
+            <param name="selectedObject">The object to get the current joint state value for.</param>
+            <param name="secondaryJointState">The returned secondary joint state. Will be set to 0.0f upon error.</param>
+            <returns>VG_ReturnCode.SUCCESS on successfull joint state fetch. VG_ReturnCode.ARGUMENT_ERROR.</returns>
+            when selectedObject is null, or VG_ReturnCode.DLL_FUNCTION_FAILED on an unexpected error.
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.ChangeObjectJoint(UnityEngine.Transform,VirtualGrasp.VG_JointType,UnityEngine.Vector2,System.Single)">
+            <summary>
+            Change an object's joint in runtime.
+            </summary>
+            <param name="selectedObject">The object to change the joint type for.</param>
+            <param name="new_jointType">The joint type to switch to.</param>
+            <param name="new_limit">The new limit of the new joint type.</param>
+            <param name="new_screwRate">The new screw rate (>=0, in cm per degree) if new_jointType is Revolute.</param>
+            @remark Note that the former joint can be recovered (see RecoverObjectJoint).
+            @remark If new_screwRate is set to 0 then do not screw.
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.ChangeObjectJoint(UnityEngine.Transform,VirtualGrasp.VG_Articulation)">
+            <summary>
+            Change an object's joint and all other articulation parameters in runtime.
+            </summary>
+            <param name="selectedObject">The object to change the joint for.</param>
+            <param name="articulation">An articulation describing the new articulation parameters.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetObjectJointType(UnityEngine.Transform,System.Boolean,VirtualGrasp.VG_JointType@)">
+            <summary>
+            Get object's original or current joint type.
+            </summary>
+            <param name="selectedObject">The object to get the current joint state value for.</param>
+            <param name="original">If true, get the original joint type, otherwise the current type.</param>
+            <param name="jointType">The returned joint type. Will be set to FLOATING upon error.</param>
+            <returns>VG_ReturnCode.SUCCESS on successfull joint type fetch. VG_ReturnCode.ARGUMENT_ERROR.</returns>
+            when selectedObject is null, or VG_ReturnCode.DLL_FUNCTION_FAILED on an unexpected error.
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.RecoverObjectJoint(UnityEngine.Transform)">
+            <summary>
+            Recover an object's original joint, after it has been changed by ChangeObjectJoint().
+            </summary>
+            <param name="selectedObject">The object to recover the joint for.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetDualHandsOnly(UnityEngine.Transform,System.Boolean)">
+            <summary>
+            Set if an object can only be manipulated by dual hands from a same avatar.
+            </summary>
+            <param name="selectedObject">The object to change the dual hand type for.</param>
+            <param name="dualHandsOnly">If dual hand only.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetSelectableObjects(System.Boolean,System.Boolean)">
+            <summary>
+            Return all interactable objects.
+            </summary>
+            <param name="excludeHidden">If to exclude objects that have been hidden in the scene.</param>
+            <param name="excludeUntagged">If to exclude objects that have been untagged in the scene.</param>
+            <returns>All interactable objects in the scene.</returns>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetSelectableObjectsFromScene(System.Boolean,System.Boolean)">
+            <summary>
+            Return all interactable objects from the editor scene.
+            </summary>
+            <param name="excludeHidden">If to exclude objects that have been hidden in the scene.</param>
+            <param name="excludeUntagged">If to exclude objects that have been untagged in the scene.</param>
+            <returns>All interactable objects in the editor scene.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:VirtualGrasp.VG_Controller.GetGraspingAvatars(UnityEngine.Transform,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.Int32,VirtualGrasp.VG_HandSide}}@)" -->
+        <member name="M:VirtualGrasp.VG_Controller.GetUnbakedObjects(VirtualGrasp.VG_ReturnCode)">
+            <summary>
+            Return all unbaked objects.
+            </summary>
+            <returns>All unbaked objects in the scene.</returns>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetExternalGrabStrength(System.Int32,VirtualGrasp.VG_HandSide,System.Single)">
+            <summary>
+            Send an external controller grab signal to the plugin (for EXTERNAL_CONTROLLER sensors).
+            </summary>
+            <param name="avatarID">The avatar to set external sensor pose for.</param>
+            <param name="handSide">The hand side to set external sensor pose for.</param>
+            <param name="strength">The grab strength signal to set.</param>
+            @tag VG_ExternalControllerManager
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.RegisterExternalControllers(System.Collections.Generic.Dictionary{System.Int32,VirtualGrasp.VG_ExternalController})">
+            <summary>
+            Register the external controllers that should be processed in each frame.
+            </summary>
+            <param name="controllers">A dictionary of external controllers (map from wrist ID to VG_ExternalController).</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.IsMissingSensorData(System.Int32,VirtualGrasp.VG_HandSide)">
+            <summary>
+            Check if a hand has invalid sensor data.
+            </summary>
+            <param name="avatarID">The avatar to check for.</param>
+            <param name="handSide">The hand side to check for.</param>
+            <returns>True if sensor data is invalid, False otherwise.</returns>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetSensorActive(System.Int32,VirtualGrasp.VG_HandSide,System.Boolean,UnityEngine.Vector3)">
+            <summary>
+            Set the active state of the sensor(s) that control the specified hand of an instance avatar.
+            </summary>
+            <param name="avatarID">The instance avatar id.</param>
+            <param name="handSide">The side of the hand (remark: UNKNOWN will not have any effect).</param>
+            <param name="active">If the sensor(s) that control this hand should be active or not.</param>
+            <param name="resetPos">If a hand is deactivated, its position will be reset to here (default (0,0,0)).</param>
+            @remark By default sensors are all active, and this function can be used in runtime to change this.
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetAvatarActive(System.Int32,System.Boolean,System.Boolean,UnityEngine.Vector3)">
+            <summary>
+            Set the active state of the avatar sensor(s) and mesh.
+            </summary>
+            <param name="avatarID">The instance avatar id.</param>
+            <param name="enableSensors">If the sensor(s) that control this hand should be active or not.</param>
+            <param name="enableMesh">If the mesh of this hand should be visible or not.</param>
+            <param name="resetPos">If an avatar is deactivated, hand positions will be reset to here (default (0,0,0)).</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetFingerCalibrationMode(System.Int32,System.Boolean)">
+            <summary>
+            Enable or disable finger calibration mode (FCM).
+            </summary>
+            During enabled FCM, the hand opening range will be calibrated.
+            After disabling it, grasp and release signals will work in this range.
+            <param name="avatarID">The avatar for which to enable/disable FCM.</param>
+            <param name="enabled">True for enabling FCM, False for disabling it.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetCalibrationMode(System.Int32,System.Boolean)">
+            <summary>
+            Enable or disable wrist calibration mode (WCM).
+            During enabled WCM, different ranges of motion of the wrist or grab strength will be calibrated.
+            </summary>
+            @remark untested
+            <param name="avatarID">The avatar for which to enable/disable WCM.</param>
+            <param name="enabled">True for enabling WCM, False for disabling it.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetGrabStrength(System.Int32,VirtualGrasp.VG_HandSide)">
+            <summary>
+            Returns the current grab strength of a hand.
+            The grab strength is 0 for a fully open hand, 1 for a fully closed hand.
+            </summary>
+            <param name="avatarID">The avatar to receive the grab strength for.</param>
+            <param name="handSide">The hand side to receive the grab strength for.</param>
+            <returns>The current grab strength of the [side] hand.</returns>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetGrabVelocity(System.Int32,VirtualGrasp.VG_HandSide)">
+            <summary>
+            Returns the current grab velocity of a hand.
+            The current velocity of the grab strength (see GetGrabStrength),
+            so negative when the hand is opening, and positive when the hand is closing.
+            </summary>
+            <param name="avatarID">The avatar to receive the grab velocity for.</param>
+            <param name="handSide">The hand side to receive the grab velocity for.</param>
+            <returns>The current grab velocity of the [side] hand.</returns>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetSensorOffset(System.Int32,VirtualGrasp.VG_SensorType,System.Nullable{UnityEngine.Vector3},System.Nullable{UnityEngine.Vector3})">
+            <summary>
+            Change the sensor offset in runtime.
+            The sensor offset is the offset between the pose that the current sensor is measuring
+            and where the virtual hand is appearing in the scene.
+            </summary>
+            @remark Also treating left hand (LHS) and right hand (RHS) is considered, so the offset is applied symmetrically.
+            <param name="avatarID">The avatar to set the offset for.</param>
+            <param name="sensor">The sensor type to change the offset for.</param>
+            <param name="position">The offset position. Set to null if position should not be modified.</param>
+            <param name="rotation">The offset rotation. Set to null if rotation should not be modified.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetPushCircle(System.Int32,VirtualGrasp.VG_HandSide,UnityEngine.Vector3@,UnityEngine.Quaternion@,System.Single@,System.Boolean@)">
+            		 * <summary>
+            		 * Set an offset onto a specific finger tip bone.
+            		 * </summary>
+            		 * <param name="side">The hand side to set the offset on.</param>
+            		 * <param name="fingerId">The finger to set the offset.</param>
+            		 * <param name="offset">The offset as a scale factor on the finger last bone's half dimension, as a 2D-coordinate of
+            		 *               (towards tip of the finger, towards inner surface of the finger).</param>         
+            		static public VG_ReturnCode SetLimbPositionOffset(VG_HandSide side, int fingerId, Vector2 offset)
+            		{
+            #if ENABLE_SENSOR_API
+            			if (!IsEnabled()) return VG_ReturnCode.DLL_NOT_INITIALIZED;
+            			return m_selectionInterface.SetLimbPositionOffset(side, fingerId, offset);
+            #else
+            			return VG_ReturnCode.UNSUPPORTED_FUNCTION;
+            #endif
+            		}
+            <summary>
+            Get the push cirle for this hand side of an avatar as a visual hint for object selection for push without physics.
+            </summary>
+            <param name="avatarID">The avatar to get the push circle for.</param>
+            <param name="handSide">The hand to get the push circle for.</param>
+            <param name="p">The push circle's position.</param>
+            <param name="r">The push circle's rotation (zaxis is normal).</param>
+            <param name="radius">Radius of the push circle,</param>
+            <param name="inContact">True if contact (i.e. pushing), False otherwise.</param>
+            <returns>The selected object, NULL if none.</returns>
+            @tag VG_HintVisualizer
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetReplayAvatarID(System.Int32@)">
+            <summary>
+            Get the AvatarID of the first replay avatar.
+            </summary>
+            <param name="avatarID">The returned AvatarID. Will be set to -1 upon error.</param>
+            <returns>VG_ReturnCode.SUCCESS on successfull avatar id fetch, or VG_ReturnCode.DLL_FUNCTION_FAILED on an unexpected error.</returns>
+            @remark No guarantee on returning the one that was first registered as replay avatar
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.StartRecording">
+            <summary>
+            Start recording sensor data.
+            </summary>
+            @tag movie:https://www.youtube.com/watch?v=o5F5tUb8RQM
+            @tag VG_Recorder 
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.StopRecording(System.String)">
+            <summary>
+            Stop recording sensor data and store the whole sequence to a file
+            </summary>
+            <param name="filename">The filename to save the recording to.</param>
+            @tag movie:https://www.youtube.com/watch?v=o5F5tUb8RQM
+            @tag VG_Recorder 
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.LoadRecording(System.String)">
+            <summary>
+            Load recorded sensor data from a file, but do not start replay
+            </summary>
+            <param name="filename">The filename to load the recording from.</param>
+            @tag movie:https://www.youtube.com/watch?v=o5F5tUb8RQM
+            @tag VG_Recorder 
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetReplayStartWristPose(System.Int32,UnityEngine.Transform,UnityEngine.Vector3@,UnityEngine.Quaternion@,UnityEngine.Vector3@,UnityEngine.Quaternion@)">
+            <summary>
+            Get the starting wrist poses for full replay of the whole interaction sequence.
+            </summary>
+            <param name="avatarID">The ID of the avatar to play the recording on (note: it has to be an avatar enabled for replay).</param>
+            <param name="selectedObject">If provided, the entire sensor recording will transformed in to object's frame. If not, in global frame.</param>
+            <param name="p_left">The position of the left wrist.</param>
+            <param name="q_left">The orientation of the left wrist.</param>
+            <param name="p_right">The position of the right wrist.</param>
+            <param name="q_right">The orientation of the right wrist.</param>
+            @remark LoadRecording need to be called before this to load recorded sensor data.
+            @remark SetProcessByRecordedFrame need to be called before this to set this avatar to be enabled for replay.
+            @tag VG_Recorder 
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.StartReplay(System.Int32,UnityEngine.Transform)">
+            <summary>
+            Start full replay of the whole interaction sequence on an avatar.
+            </summary>
+            <param name="avatarID">The ID of the avatar to play the recording on (note: it has to be an avatar enabled for replay).</param>
+            <param name="selectedObject">If provided, the entire sensor recording will be replayed in this object's frame. If not, in global frame.</param>
+            @tag movie:https://www.youtube.com/watch?v=o5F5tUb8RQM
+            @tag VG_Recorder 
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.StopReplay(System.Int32)">
+            <summary>
+            Stop replay of the recorded interaction sequence on an avatar.
+            </summary>
+            <param name="avatarID">The ID of the avatar to play the recording on (note: it has to be an avatar enabled for replay).</param>
+            @tag VG_Recorder 
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.StartReplayOnObject(UnityEngine.Transform,System.Int32,VirtualGrasp.VG_HandSide,System.Int32)">
+            <summary>
+            Start replaying a specific interaction segment on one object.
+            </summary>
+            <param name="obj">The object to play the interaction on.</param>
+            <param name="avatarID">The avatar to play the interaction with.</param>
+            <param name="handSide">The hand to play the interaction with.</param>
+            <param name="interactionId">The ID of the interaction segment to be played on this object.</param>
+            @tag movie:https://www.youtube.com/watch?v=o5F5tUb8RQM
+            @tag VG_Recorder 
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.IsReplaying(System.Int32,VirtualGrasp.VG_HandSide)">
+            <summary>
+            Check if a hand is currently replaying a recorded sensor data.
+            </summary>
+            <param name="avatarID">The avatar to check.</param>
+            <param name="handSide">The hand to check.</param>
+            <returns>True if replaying, False otherwise.</returns>
+            @tag VG_Recorder 
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.ForceReleaseObject(System.Int32)">
+            <summary>
+            Force the release of a grasp.
+            </summary>
+            <param name="avatarID">The avatar to release grasps on all its hands.</param>
+            @tag untested
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.ForceReleaseObject(System.Int32,VirtualGrasp.VG_HandSide)">
+            <summary>
+            Force the release of a grasp.
+            </summary>
+            <param name="avatarID">The avatar to release a grasp for.</param>
+            <param name="side">The hand which to release the grasp for.</param>
+            @tag untested
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.MakeGesture(System.Int32,VirtualGrasp.VG_HandSide,VirtualGrasp.VG_GraspType)">
+            <summary>
+            Make a gesture with a hand.
+            </summary>
+            <param name="avatarID">The avatar to make gesture for.</param>
+            <param name="side">The hand which to make gesture for.</param>
+            <param name="gesture">The gesture to make with the [side] hand of avatar [avatarID].</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.ReleaseGesture(System.Int32,VirtualGrasp.VG_HandSide)">
+            <summary>
+            Release a gesture on a hand
+            </summary>
+            <param name="avatarID">The avatar to release a grasp for.</param>
+            <param name="side">The hand which to release the grasp for.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetBlockRelease(System.Int32,System.Boolean)">
+            <summary>
+            Specify if on this hand should block release or not in runtime.
+            </summary>
+            <param name="avatarID">The avatar to release a grasp for.</param>
+            <param name="block">If block release signal or not on this avatar.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetBlockRelease(System.Int32,VirtualGrasp.VG_HandSide,System.Boolean)">
+            <summary>
+            Specify if on this hand should block release or not in runtime.
+            </summary>
+            <param name="avatarID">The avatar to release a grasp for.</param>
+            <param name="side">The hand which to release the grasp for.</param>
+            <param name="block">If block release signal or not on this hand.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetSynthesisMethodForObject(UnityEngine.Transform)">
+            		 * <summary>
+            		 * Set all controller's gesture forming and releasing interpolation duration.
+            		 * </summary>
+            		 * <param name="duration">The duration in sec forming and releasing gesture.</param>
+            		 * @remark Default is 0.1 sec
+            		 * @tag deprecated
+            		 *
+            		[System.Obsolete("This is a deprecated, non-functional method and will be removed in a later release. The default will be set to 0.1 seconds.")]
+            		static public VG_ReturnCode SetGestureDuration(float duration)
+            		{
+            			//if (m_selectionInterface == null) return VG_ReturnCode.DLL_NOT_INITIALIZED;
+            			//return m_selectionInterface.SetGestureDuration(duration);
+            			return VG_ReturnCode.UNSUPPORTED_FUNCTION;
+            		}
+            		 * <summary>
+            		 * Set the angle threshold above which the angle between hand push dir with the push axis for an object, push not allowed.
+            		 * </summary>
+            		 * <param name="angle">The angle in range [0;180] degrees. Default is 90 degrees.</param>
+            		 * @tag deprecated
+            		 * 
+            		[System.Obsolete("This is a deprecated, non-functional method and will be removed in a later release. The default will be set to 150 degree.")]
+            		static public VG_ReturnCode SetPushAngleThreshold(float angle)
+            		{
+            			//if (m_selectionInterface == null) return VG_ReturnCode.DLL_NOT_INITIALIZED;
+            			//return m_selectionInterface.SetPushAngleThreshold(angle);
+            			return VG_ReturnCode.UNSUPPORTED_FUNCTION;
+            		}
+            <summary>
+            Receive the current VG_SynthesisMethod of an interactable object.
+            </summary>
+            <param name="selectedObject">The object to query the VG_SynthesisMethod for.</param>
+            <returns>The current VG_SynthesisMethod or VG_SynthesisMethod. NONE if invalid.</returns>
+            @tag VG_GraspStudio
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetGlobalSynthesisMethod(VirtualGrasp.VG_SynthesisMethod)">
+            		 * <summary>
+            		 * Receive the current VG_InteractionType of an interactable object.
+            		 * </summary>
+            		 * <param name="selectedObject">The object to query the VG_InteractionType for.</param>
+            		 * <returns>The current VG_InteractionType or VG_InteractionType.TRIGGER if invalid.</returns>
+            		 * @tag VG_Editor
+            		static public VG_InteractionType GetInteractionTypeForObject(Transform selectedObject)
+            		{
+            			if (m_selectionInterface == null) return VG_InteractionType.TRIGGER_GRASP;
+            			return m_selectionInterface.GetInteractionTypeForObject(selectedObject);
+            		}
+            <summary>
+            Set the global grasp synthesis method.
+            The synthesis method defines the algorithm with which grasps are generated in runtime.
+            </summary>
+            @remark This will overwrite the specific grasp synthesis method (see SetSynthesisMethodForObject) for all objects.
+            <param name="synthesisMethod">The method to switch to for all objects.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetSynthesisMethodForSelectedObject(System.Int32,VirtualGrasp.VG_HandSide,VirtualGrasp.VG_SynthesisMethod)">
+            <summary>
+            Set the grasp synthesis method for a selected object. 
+            The synthesis method defines the algorithm with which grasps are generated in runtime.
+            </summary>
+            @remark This will overwrite the global grasp synthesis method (see SetGlobalSynthesisMethod) for that object.
+            <param name="avatarID">The avatar which is selecting an object.</param>
+            <param name="side">The hand which is selecting an object.</param>
+            <param name="synthesisMethod">The synthesis method to switch to for the object that is selected by the [side] hand of avatar [avatarID].</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetSynthesisMethodForObject(UnityEngine.Transform,VirtualGrasp.VG_SynthesisMethod)">
+            <summary>
+            Set the grasp synthesis method for a selected object. 
+            The synthesis method defines the algorithm with which grasps are generated.
+            </summary>
+            @remark This will overwrite the global grasp synthesis method (see SetGlobalSynthesisMethod) for that object.
+            <param name="selectedObject">The object to modify the synthesis method for.</param>
+            <param name="synthesisMethod">The synthesis method to switch to for the selected object.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetGlobalInteractionType(VirtualGrasp.VG_InteractionType)">
+            <summary>
+            Set the global interaction type method.
+            The interaction type defines how the hand and the object should get together during a grasp.
+            </summary>
+            @remark This will overwrite the specific grasp interaction type (see SetInteractionTypeForObject) for all objects.
+            <param name="type">The method to switch to for all objects.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetInteractionTypeForSelectedObject(System.Int32,VirtualGrasp.VG_HandSide,VirtualGrasp.VG_InteractionType)">
+            <summary>
+            Set the interaction type for a selected object.
+            The interaction type defines how the hand and the object should get together during a grasp.
+            </summary>
+            @remark This will overwrite the global interaction type (see SetGlobalInteractionType) for that object.
+            <param name="avatarID">The avatar which is selecting an object.</param>
+            <param name="side">The hand which is selecting an object.</param>
+            <param name="interactionType">The interaction type to switch to for the object that is selected by the [side] hand of avatar [avatarID].</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetInteractionTypeForObject(UnityEngine.Transform,VirtualGrasp.VG_InteractionType)">
+            <summary>
+            Set the interaction type for a selected object.
+            The interaction type defines how the hand and the object should get together during a grasp.
+            </summary>
+            @remark This will overwrite the global interaction type (see SetGlobalInteractionType) for that object.
+            <param name="selectedObject">The object to modify the interaction type for.</param>
+            <param name="interactionType">The interaction type to switch to for the object.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetGlobalThrowVelocityScale(System.Single)">
+            <summary>
+            Set the global throw velocity scale.
+            The throw velocity scale defines how powerful the throw is in terms of linear movement.
+            </summary>
+            @remark This will overwrite the specific throw velocity scale (see SetThrowVelocityScaleForObject) for all objects.
+            <param name="throwVelocityScale">The throw translational velocity scale.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetThrowVelocityScaleForSelectedObject(System.Int32,VirtualGrasp.VG_HandSide,System.Single)">
+            <summary>
+            Set the throw velocity scale for a selected object.
+            The throw velocity scale defines how powerful the throw is in terms of linear movement.
+            </summary>
+            @remark This will overwrite the global throw velocity scale (see SetGlobalThrowVelocityScale) for that object.
+            <param name="avatarID">The avatar which is selecting an object.</param>
+            <param name="side">The hand which is selecting an object.</param>
+            <param name="throwVelocityScale">The throw translational velocity scale.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetThrowVelocityScaleForObject(UnityEngine.Transform,System.Single)">
+            <summary>
+            Set the throw velocity scale for a selected object.
+            The throw velocity scale defines how powerful the throw is in terms of linear movement.
+            </summary>
+            @remark This will overwrite the global throw velocity scale (see SetGlobalThrowVelocityScale) for that object.
+            <param name="selectedObject">The object to modify the throw velocity scale for.</param>
+            <param name="throwVelocityScale">The throw translational velocity scale.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetGlobalThrowAngularVelocityScale(System.Single)">
+            <summary>
+            Set the global throw angular velocity scale.
+            The throw angular velocity scale defines how powerful the throw is in terms of rotation movement.
+            </summary>
+            @remark This will overwrite the specific throw angular velocity scale (see SetThrowAngularVelocityScaleForObject) for all objects.
+            <param name="throwAngularVelocityScale">The throw angular velocity scale.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetThrowAngularVelocityScaleForSelectedObject(System.Int32,VirtualGrasp.VG_HandSide,System.Single)">
+            <summary>
+            Set the throw angular velocity scale for a selected object.
+            The throw angular velocity scale defines how powerful the throw is in terms of rotation movement.
+            </summary>
+            @remark This will overwrite the global throw angular velocity scale (see SetGlobalThrowAngularVelocityScale) for that object.
+            <param name="avatarID">The avatar which is selecting an object.</param>
+            <param name="side">The hand which is selecting an object.</param>
+            <param name="throwAngularVelocityScale">The throw angular velocity scale.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetThrowAngularVelocityScaleForObject(UnityEngine.Transform,System.Single)">
+            <summary>
+            Set the throw angular velocity scale for a selected object.
+            The throw angular velocity scale defines how powerful the throw is in terms of rotation movement.
+            </summary>
+            @remark This will overwrite the global throw angular velocity scale (see SetGlobalThrowAngularVelocityScale) for that object.
+            <param name="selectedObject">The object to modify the throw velocity scale for.</param>
+            <param name="throwAngularVelocityScale">The throw angular velocity scale.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.SetObjectAffordances(UnityEngine.Transform,VirtualGrasp.VG_Affordances)">
+            <summary>
+            Set the affordances for a selected object.
+            </summary>
+            <param name="selectedObject">The object to modify the affordances for.</param>
+            <param name="affordances">The affordances to switch to for this object.</param>
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetBone(System.Int32,VirtualGrasp.VG_HandSide,VirtualGrasp.VG_BoneType,UnityEngine.Transform@)">
+            <summary>
+            Return the pose (i.e. position and orientation) of a specific bone.
+            </summary>
+            <param name="avatarID">The avatar to get the bone pose from.</param>
+            <param name="handSide">The hand side to get the bone pose from.</param>
+            <param name="boneType">The BoneType to get.</param>
+            <param name="t">The returned pose of the bone.</param>
+            @tag VG_HandVisualizer
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetBone(System.Int32)">
+            <summary>
+            Return the Transform that corresponds to a provided instance ID.
+            </summary>
+            <param name="transformID">The instance ID.</param>
+            <returns>The Transform that corresponds to the transformID.</returns>
+            @tag VG_HandVisualizer
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetBone(System.Int32,VirtualGrasp.VG_HandSide,VirtualGrasp.VG_BoneType,System.Int32@,UnityEngine.Vector3@,UnityEngine.Quaternion@)">
+            <summary>
+            Return the pose (i.e. position and orientation) of a specific bone.
+            </summary>
+            <param name="avatarID">The avatar to get the bone pose from.</param>
+            <param name="handSide">The hand side to get the bone pose from.</param>
+            <param name="boneType">The BoneType to get.</param>
+            <param name="instanceID">The returned ID of the bone transform.</param>
+            <param name="p">The returned position of the bone.</param>
+            <param name="q">The returned rotation of the bone.</param>
+            @tag VG_HandVisualizer
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetBone(System.Int32,VirtualGrasp.VG_HandSide,VirtualGrasp.VG_BoneType,System.Int32@,UnityEngine.Matrix4x4@)">
+            <summary>
+            Return the pose matrix of a specific bone.
+            </summary>
+            <param name="avatarID">The avatar to get the bone pose from.</param>
+            <param name="handSide">The hand side to get the bone pose from.</param>
+            <param name="boneType">The BoneType to get.</param>
+            <param name="instanceID">The returned ID of the bone transform.</param>
+            <param name="m">The returned pose matrix of the bone.</param>
+            @tag VG_HandVisualizer
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetFingerBone(System.Int32,VirtualGrasp.VG_HandSide,System.Int32,System.Int32,System.Int32@,UnityEngine.Matrix4x4@)">
+            <summary>
+            Return the pose of a specific finger bone as a matrix.
+            </summary>
+            <param name="avatarID">The avatar to get the bone pose from.</param>
+            <param name="handSide">The hand side to get the bone pose from.</param>
+            <param name="fingerID">The finger to get the bone pose from (from 0 as thumb to 4 as pinky).</param>
+            <param name="boneID">The bone index (from 0 as proximal to N as distal) to get the bone pose from. Use -1 for fingertip.</param>
+            <param name="instanceID">The returned ID of the bone transform.</param>
+            <param name="m">The returned pose of the bone.</param>
+            @tag VG_HandVisualizer
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetFingerBone(System.Int32,VirtualGrasp.VG_HandSide,System.Int32,System.Int32,System.Int32@,UnityEngine.Vector3@,UnityEngine.Quaternion@)">
+            <summary>
+            Return the pose (i.e. position and orientation) of a specific finger bone.
+            </summary>
+            <param name="avatarID">The avatar to get the bone pose from.</param>
+            <param name="handSide">The hand side to get the bone pose from.</param>
+            <param name="fingerID">The finger to get the bone pose from (from 0 as thumb to 4 as pinky).</param>
+            <param name="boneID">The bone index (from 0 as proximal to N as distal) to get the bone pose from. Use -1 for fingertip.</param>
+            <param name="instanceID">The returned ID of the bone transform.</param>
+            <param name="p">The returned position of the bone.</param>
+            <param name="q">The returned rotation of the bone.</param>
+            @tag VG_HandVisualizer
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetFingerBone(System.Int32,VirtualGrasp.VG_HandSide,System.Int32,System.Int32,UnityEngine.Transform@)">
+            <summary>
+            Reflect the pose of a specific bone on a Transform.
+            </summary>
+            <param name="avatarID">The avatar to get the bone pose from.</param>
+            <param name="handSide">The hand side to get the bone pose from.</param>
+            <param name="fingerID">The finger to get the bone pose from (from 0 as thumb to 4 as pinky).</param>
+            <param name="boneID">The bone index (from 0 as proximal to N as distal) to get the bone pose from. Use -1 for fingertip.</param>
+            <param name="t">The returned pose of the bone.</param>
+            @tag VG_HandVisualizer
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.EditGrasp(System.Int32,VirtualGrasp.VG_HandSide,VirtualGrasp.VG_EditorAction,UnityEngine.Transform,System.Int32)">
+            <summary>
+            Call grasp editor functionality on a currently selected object and grasp.
+            </summary>
+            <param name="avatarID">The avatar to call grasp editor functionality on.</param>
+            <param name="handSide">The hand side to call grasp editor functionality on.</param>
+            <param name="action">The grasp editor function / action to call.</param>
+            <param name="obj">The object to call the action on (if not provided, the object in the hand).</param>
+            <param name="grasp">The grasp ID to call the action on (if not provided, the current grasp of the hand).</param>
+            @tag movie:https://www.youtube.com/watch?v=Z1j6BgosFVA
+            @tag VG_GraspStudio
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetGrasp(UnityEngine.Transform,System.Int32,VirtualGrasp.VG_HandSide,System.Int32,System.Int32@,UnityEngine.Vector3@,UnityEngine.Quaternion@,VirtualGrasp.VG_GraspType@,VirtualGrasp.VG_GraspLabel@,VirtualGrasp.VG_QueryGraspMode,VirtualGrasp.VG_QueryGraspMethod)">
+            <summary>
+            Receive a grasp in the grasp DB by index.
+            </summary>
+            <param name="selectedObject">The object to receive a grasp for.</param>
+            <param name="avatarID">The avatar to receive a grasp for.</param>
+            <param name="handSide">The hand side to receive a grasp for.</param>
+            <param name="graspIndex">The index of grasp to receive.</param>
+            <param name="p">The received wrist position of the grasp.</param>
+            <param name="q">The received wrist orientation of the grasp.</param>
+            <param name="type">The received VG_GraspType of the grasp.</param>
+            <param name="label">The received VG_GraspLabel of the grasp.</param>
+            <param name="queryGraspMode">Can be used to define if and how the grasp should be applied also.</param>
+            <param name="queryGraspMethod">Can be used to define how the graspIndex should be interpreted.</param>
+            @tag VG_GraspStudio
+        </member>
+        <member name="M:VirtualGrasp.VG_Controller.GetNumGrasps(UnityEngine.Transform,System.Int32,VirtualGrasp.VG_HandSide)">
+            <summary>
+            Receive the number of grasps for a specific object.
+            </summary>
+            <param name="selectedObject">The object to get the number of available grasps for.</param>
+            <param name="avatarID">If a valid avatarID together with handSide, receive only the available grasps for this hand (otherwise all available grasps).</param>
+            <param name="handSide">If a valid handSide together with avatarID, receive only the available grasps for this hand (otherwise all available grasps).</param>
+            <returns>The number of grasps for the selected object (either all or for the specified hand).</returns>
+            @tag VG_HintVisualizer
+        </member>
+    </members>
+</doc>

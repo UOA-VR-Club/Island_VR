@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>virtualgrasp-editor.CSharp.Unity.NET3.5</name>
+    </assembly>
+    <members>
+        <member name="M:UnityEngine.VspAttribution.VirtualGrasp.VspAttributionEditor.SendAttributionEvent(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Registers and attempts to send a VSP Attribution event.
+            </summary>
+            <param name="actionName">Name of the action, identifying a place this event was called from.</param>
+            <param name="partnerName">Identifiable Verified Solutions Partner name.</param>
+            <param name="customerUid">Unique identifier of the customer using Partner's Verified Solution.</param>
+        </member>
+    </members>
+</doc>

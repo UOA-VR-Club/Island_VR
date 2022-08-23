@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\IslandVR",
+    "\\IslandVR\\Library",
+    "\\IslandVR\\Library\\PackageCache",
+    "\\IslandVR\\Library\\PackageCache\\com.unity.xr.interaction.toolkit@2.0.2",
+    "\\IslandVR\\Library\\PackageCache\\com.unity.xr.interaction.toolkit@2.0.2\\Runtime",
+    "\\IslandVR\\Library\\PackageCache\\com.unity.xr.interaction.toolkit@2.0.2\\Runtime\\Interaction",
+    "\\IslandVR\\Library\\PackageCache\\com.unity.xr.interaction.toolkit@2.0.2\\Runtime\\Interaction\\Controllers"
+  ],
+  "SelectedNode": "\\IslandVR\\Library\\PackageCache\\com.unity.xr.interaction.toolkit@2.0.2\\Runtime\\Interaction\\Controllers\\ActionBasedController.cs",
+  "PreviewInSolutionExplorer": false
+}
