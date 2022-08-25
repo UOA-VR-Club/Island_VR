@@ -5629,15 +5629,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c82e9532eb7594a44aeaa0dcde154fa2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.662
+      value: 13.099
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c82e9532eb7594a44aeaa0dcde154fa2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.489
+      value: 0.745
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c82e9532eb7594a44aeaa0dcde154fa2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.031
+      value: 13.764
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c82e9532eb7594a44aeaa0dcde154fa2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5674,6 +5674,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c82e9532eb7594a44aeaa0dcde154fa2, type: 3}
       propertyPath: m_Name
       value: BerryBush
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870087916386569459, guid: c82e9532eb7594a44aeaa0dcde154fa2, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7870087916386569459, guid: c82e9532eb7594a44aeaa0dcde154fa2, type: 3}
       propertyPath: m_Materials.Array.data[0]
