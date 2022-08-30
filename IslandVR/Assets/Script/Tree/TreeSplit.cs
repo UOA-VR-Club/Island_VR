@@ -78,6 +78,8 @@ public class TreeSplit : MonoBehaviour
         treeUp.transform.parent = null;
         treeUp.GetComponent<Rigidbody>().isKinematic = false;
 
+        treeFall.Play();
+
         Destroy(this);
     }
 }
