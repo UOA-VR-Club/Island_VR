@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RightController
   - coconut
+  - Pickable
   layers:
   - Default
   - TransparentFX
