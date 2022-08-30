@@ -14,13 +14,15 @@ public class VRInventory : MonoBehaviour
     bool UIActive;
     public InputActionReference lefthandPrimaryReference = null;
 
+    // when game start, inventory is inactive by default
     private void Start()
     {
         Inventory.SetActive(false);
         UIActive = false;
-        lefthandPrimaryReference.action.started += openInventory;
+        lefthandPrimaryReference.action.started += openInventory; // attaches the openInventory function to the input action that is referenced. To find the input actions, go to assets, samples, xr interaction toolkit... keep going and then click default input actions
     }
 
+    // changes the inventory position to match the anchor inside left controller
     private void Update()
     {
         if (UIActive)
