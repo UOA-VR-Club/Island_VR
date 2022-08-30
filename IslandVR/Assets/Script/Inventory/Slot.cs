@@ -10,8 +10,6 @@ public class Slot : MonoBehaviour
     public Image slotImage;
     Color originalColour;
     public InputActionReference activateReference = null;
-    public bool isKinematicFlag = false;
-    public GameObject isKinematicGameObject = null;
 
 
     // Start is called before the first frame update
@@ -38,10 +36,7 @@ public class Slot : MonoBehaviour
         if(!GameObject.ReferenceEquals(ItemInSlot, other.gameObject)) return;
         if(activateReference.action.ReadValue<float>() != (float) 0)
         {
-            isKinematicFlag = true;
-            isKinematicGameObject = other.gameObject;
             RemoveItem(other.gameObject);
-            Debug.Log(isKinematicFlag);
         }
     }
 
@@ -52,7 +47,10 @@ public class Slot : MonoBehaviour
 
     void InsertItem(GameObject obj)
     {
-        obj.GetComponent<Rigidbody>().isKinematic = true;
+        //obj.GetComponent<Rigidbody>().isKinematic = true;
+        obj.GetComponent<Rigidbody>().useGravity = false;
+        obj.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        obj.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
         obj.transform.SetParent(gameObject.transform, true);
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localEulerAngles = obj.GetComponent<Item>().slotRotation;
@@ -80,16 +78,6 @@ public class Slot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isKinematicFlag)
-        {
-            Debug.Log("passed flag check");
-            if(activateReference.action.ReadValue<float>() == (float) 0)
-            {
-                isKinematicGameObject.GetComponent<Rigidbody>().isKinematic = false;
-                isKinematicFlag = false;
-                isKinematicGameObject = null;
-                Debug.Log("kine");
-            }
-        }
+
     }
 }
