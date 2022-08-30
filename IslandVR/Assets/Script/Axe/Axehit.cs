@@ -30,8 +30,6 @@ public class Axehit : MonoBehaviour
         if (hand)
         {
             float speed = other.relativeVelocity.magnitude;
-            Debug.Log(speed);
-    
             hand.SendHapticImpulse(Clamp(speed,0.3f,0.9f), Clamp(speed/3.0f, 0.1f, 0.3f));
         }
     }

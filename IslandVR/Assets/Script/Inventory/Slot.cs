@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 
 public class Slot : MonoBehaviour
 {
-    public GameObject ItemInSlot;
+    public GameObject ItemInSlot; //stores item that is in this slot
     public Image slotImage;
     Color originalColour;
-    public InputActionReference activateReference = null;
+    public InputActionReference activateReference = null; //this inputactionreference is linked to the grip action. To find the input actions, go to assets, samples, xr interaction toolkit... keep going and then click default input actions
 
 
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class Slot : MonoBehaviour
         originalColour = slotImage.color;
     }
 
-    // OnTriggerStay is called constantly when another gameobject's collider is colliding with this script's gameobject
+    // When 'other' gameobject touches this gameobject (the slot), if it is an item and if this slot is empty, then put that gameobject into this slot
     private void OnTriggerStay(Collider other)
     {
         if (ItemInSlot != null) return;
@@ -30,7 +30,7 @@ public class Slot : MonoBehaviour
         }
     }
 
-    // Called when a gameobject stored in the inventory is taken out
+    // If the item exiting is the one that was in the slot, then call the remove item function. the action.ReadValue is checking that the grip is released
     private void OnTriggerExit(Collider other)
     {
         if(!GameObject.ReferenceEquals(ItemInSlot, other.gameObject)) return;
