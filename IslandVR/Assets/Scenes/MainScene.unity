@@ -6155,6 +6155,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 708f14799b441f54db3f0bc1b2138b16, type: 3}
+--- !u!1 &1704665370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 708f14799b441f54db3f0bc1b2138b16, type: 3}
+  m_PrefabInstance: {fileID: 1704665369}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1704665371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704665370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bf09714f8f06744bfb8f78fc06faab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inSlot: 0
+  slotRotation: {x: 0, y: 0, z: 0}
+  currentSlot: {fileID: 0}
+--- !u!114 &1704665372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704665370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nutrientValues: 000000000000000000000000000000000000000000000000
+  player: {fileID: 0}
+  eatSound: {fileID: 0}
+  activateButton: {fileID: 0}
 --- !u!1 &1774419549 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1103374741572604, guid: 99a17c21e2c114ae7ac1b19504a46423, type: 3}
