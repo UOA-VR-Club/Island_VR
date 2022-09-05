@@ -690,8 +690,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StoredItem: {fileID: 0}
-  SlotImage: {fileID: 0}
-  GripAction: {fileID: 0}
+  SlotImage: {fileID: 597070458}
+  GripAction: {fileID: -3187604292147355658, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1001 &236800322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -786,9 +786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  EatSound: {fileID: 0}
-  ActivateControl: {fileID: 0}
+  Player: {fileID: 1483372186}
+  EatSound: {fileID: 836488370}
+  ActivateControl: {fileID: -7603705087647937607, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   Proteins: 0
   Carbohydrates: 0
   Fats: 0
@@ -1034,7 +1034,7 @@ GameObject:
   - component: {fileID: 248027739}
   - component: {fileID: 248027740}
   m_Layer: 0
-  m_Name: Tree fall
+  m_Name: Tree Fall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1236,9 +1236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  EatSound: {fileID: 0}
-  ActivateControl: {fileID: 0}
+  Player: {fileID: 1483372186}
+  EatSound: {fileID: 836488370}
+  ActivateControl: {fileID: -7603705087647937607, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   Proteins: 0
   Carbohydrates: 0
   Fats: 0
@@ -2158,6 +2158,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1613793188168490, guid: 99a17c21e2c114ae7ac1b19504a46423, type: 3}
   m_PrefabInstance: {fileID: 1882597933}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &421843683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421843682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1483372186}
+  EatSound: {fileID: 836488370}
+  ActivateControl: {fileID: -7603705087647937607, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  Proteins: 0
+  Carbohydrates: 0
+  Fats: 0
+  Minerals: 0
+  Vitamins: 0
+  Water: 0
 --- !u!114 &421843684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3600,9 +3621,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  EatSound: {fileID: 0}
-  ActivateControl: {fileID: 0}
+  Player: {fileID: 1483372186}
+  EatSound: {fileID: 836488370}
+  ActivateControl: {fileID: -7603705087647937607, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   Proteins: 0
   Carbohydrates: 0
   Fats: 0
@@ -3802,9 +3823,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TreeHealthPoints: 500
-  TreeFallSound: {fileID: 0}
-  CoconutChopSound: {fileID: 0}
-  NormalChopSound: {fileID: 0}
+  TreeFallSound: {fileID: 248027740}
+  CoconutChopSound: {fileID: 1630871719}
+  NormalChopSound: {fileID: 329905605}
 --- !u!136 &727695071
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4159,7 +4180,7 @@ GameObject:
   - component: {fileID: 836488369}
   - component: {fileID: 836488370}
   m_Layer: 0
-  m_Name: eatSound
+  m_Name: Eat Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5729,8 +5750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StoredItem: {fileID: 0}
-  SlotImage: {fileID: 0}
-  GripAction: {fileID: 0}
+  SlotImage: {fileID: 1028914374}
+  GripAction: {fileID: -3187604292147355658, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &1453567554
 GameObject:
   m_ObjectHideFlags: 0
@@ -6467,8 +6488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StoredItem: {fileID: 0}
-  SlotImage: {fileID: 0}
-  GripAction: {fileID: 0}
+  SlotImage: {fileID: 378179629}
+  GripAction: {fileID: -3187604292147355658, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1001 &1704665369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6570,9 +6591,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  EatSound: {fileID: 0}
-  ActivateControl: {fileID: 0}
+  Player: {fileID: 1483372186}
+  EatSound: {fileID: 836488370}
+  ActivateControl: {fileID: -7603705087647937607, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   Proteins: 0
   Carbohydrates: 0
   Fats: 0
@@ -6584,6 +6605,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1103374741572604, guid: 99a17c21e2c114ae7ac1b19504a46423, type: 3}
   m_PrefabInstance: {fileID: 1882597933}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1774419550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774419549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1483372186}
+  EatSound: {fileID: 836488370}
+  ActivateControl: {fileID: -7603705087647937607, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  Proteins: 0
+  Carbohydrates: 0
+  Fats: 0
+  Minerals: 0
+  Vitamins: 0
+  Water: 0
 --- !u!114 &1774419551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6641,7 +6683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010387787038, guid: 9b663bb687068904395cfe31bb4dee7f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4000010387787038, guid: 9b663bb687068904395cfe31bb4dee7f, type: 3}
       propertyPath: m_LocalScale.x
@@ -7324,8 +7366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StoredItem: {fileID: 0}
-  SlotImage: {fileID: 0}
-  GripAction: {fileID: 0}
+  SlotImage: {fileID: 809830636}
+  GripAction: {fileID: -3187604292147355658, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1001 &1882597933
 PrefabInstance:
   m_ObjectHideFlags: 0
