@@ -8,8 +8,9 @@ public class PaneEvoker : MonoBehaviour
 {
     public GameObject Pane;
     public GameObject Anchor;
+    public GameObject EventSystem;
     public InputActionReference ActionButton;
-    private bool isPaneActive;
+    public bool isPaneActive;
 
     /// <summary>
     /// Called before the first frame is updated.
@@ -44,7 +45,19 @@ public class PaneEvoker : MonoBehaviour
     /// <param name="context"></param>
     private void TogglePane(InputAction.CallbackContext context)
     {
-        isPaneActive = !isPaneActive;
-        Pane.SetActive(isPaneActive);
+        if(EventSystem.GetComponent<EventSystemManager>().isAnyPaneActive == false)
+        {
+            isPaneActive = true;
+            Pane.SetActive(isPaneActive);
+            EventSystem.GetComponent<EventSystemManager>().isAnyPaneActive = true;
+        } 
+        else 
+        {
+            bool temp = isPaneActive;
+            EventSystem.GetComponent<EventSystemManager>().DeactivateAllPanes();
+            isPaneActive = !temp;
+            Pane.SetActive(isPaneActive);
+            EventSystem.GetComponent<EventSystemManager>().isAnyPaneActive = isPaneActive;
+        }
     }
 }
