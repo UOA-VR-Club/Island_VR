@@ -1087,6 +1087,34 @@
             ]
         },
         {
+            "name": "Attributes",
+            "id": "8a698b66-8fe4-4e98-9489-7c7d11e789de",
+            "actions": [
+                {
+                    "name": "Open Attributes",
+                    "type": "Button",
+                    "id": "6632d528-c974-4110-99b8-e58c23d3c4ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fcfdd69e-9a60-412c-8937-a89e344f2d6e",
+                    "path": "<OculusTouchController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Open Attributes",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Inventory",
             "id": "21fb58ab-5c4b-4857-a09e-5ff236bdc188",
             "actions": [

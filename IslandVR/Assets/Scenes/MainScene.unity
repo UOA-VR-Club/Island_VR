@@ -4697,6 +4697,7 @@ GameObject:
   - component: {fileID: 978291997}
   - component: {fileID: 978291996}
   - component: {fileID: 978291999}
+  - component: {fileID: 978292000}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -4767,6 +4768,21 @@ MonoBehaviour:
   Inventory: {fileID: 1138940982}
   Anchor: {fileID: 510677437}
   lefthandPrimaryReference: {fileID: 2169764721175807945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &978292000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978291995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d033f099d3351b40b5d805c06002db8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributes: {fileID: 1039543851}
+  anchor: {fileID: 510677437}
+  lefthandSecondaryReference: {fileID: 4460231987460919998, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &1028914372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4851,6 +4867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1039543852}
+  - component: {fileID: 1039543853}
   m_Layer: 0
   m_Name: Attributes
   m_TagString: Untagged
@@ -4874,6 +4891,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1039543853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039543851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf9561803c8862f498697fa4fbdc507c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 100
+  speed: 0
+  strength: 0
+  stamina: 0
+  water: 100
+  minerals: 100
+  vitamins: 100
+  carbohydrates: 100
+  proteins: 100
+  fats: 100
+  timer: 0
+  decayTime: 1
 --- !u!1 &1076254230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1413941736838666, guid: 99a17c21e2c114ae7ac1b19504a46423, type: 3}
