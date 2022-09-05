@@ -5,7 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// Vibrates the XR controller when the axe hits a GameObject with a Collision attribute.
 /// </summary>
 [RequireComponent(typeof(XRBaseInteractable))]
-public class Axehit : MonoBehaviour
+public class AxeHapticsProvider : MonoBehaviour
 {
     /// <summary>
     /// Called when axe collides with the other GameObject.

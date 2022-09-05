@@ -5,7 +5,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Updates the displays shown in the Attributes pane.
 /// </summary>
-public class UpdateAttributes : MonoBehaviour
+public class AttributesUpdater : MonoBehaviour
 {
     public GameObject Player;
 
@@ -23,12 +23,12 @@ public class UpdateAttributes : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        float proteins = Player.GetComponent<Attributes>().Proteins;
-        float carbohydrates = Player.GetComponent<Attributes>().Carbohydrates;
-        float fats = Player.GetComponent<Attributes>().Fats;
-        float minerals = Player.GetComponent<Attributes>().Minerals;
-        float vitamins = Player.GetComponent<Attributes>().Vitamins;
-        float water = Player.GetComponent<Attributes>().Water;
+        float proteins = Player.GetComponent<PlayerAttributes>().Proteins;
+        float carbohydrates = Player.GetComponent<PlayerAttributes>().Carbohydrates;
+        float fats = Player.GetComponent<PlayerAttributes>().Fats;
+        float minerals = Player.GetComponent<PlayerAttributes>().Minerals;
+        float vitamins = Player.GetComponent<PlayerAttributes>().Vitamins;
+        float water = Player.GetComponent<PlayerAttributes>().Water;
 
         ProteinDisplay.GetComponent<Text>().text = proteins.ToString(CultureInfo.InvariantCulture);
         CarbohydrateDisplay.GetComponent<Text>().text = carbohydrates.ToString(CultureInfo.InvariantCulture); 

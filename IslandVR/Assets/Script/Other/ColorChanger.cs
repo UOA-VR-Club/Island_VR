@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ChangeColor : MonoBehaviour
+public class ColorChanger : MonoBehaviour
 {
     public InputActionReference ActivateControl;
 

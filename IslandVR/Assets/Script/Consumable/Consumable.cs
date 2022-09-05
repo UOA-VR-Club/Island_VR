@@ -41,12 +41,12 @@ public class Consumable : MonoBehaviour
     private void Consume()
     {
         // Change player nutrient values
-        Player.GetComponent<Attributes>().Proteins += Proteins;
-        Player.GetComponent<Attributes>().Carbohydrates += Carbohydrates;
-        Player.GetComponent<Attributes>().Fats += Fats;
-        Player.GetComponent<Attributes>().Minerals += Minerals;
-        Player.GetComponent<Attributes>().Vitamins += Vitamins;
-        Player.GetComponent<Attributes>().Water += Water;
+        Player.GetComponent<PlayerAttributes>().Proteins += Proteins;
+        Player.GetComponent<PlayerAttributes>().Carbohydrates += Carbohydrates;
+        Player.GetComponent<PlayerAttributes>().Fats += Fats;
+        Player.GetComponent<PlayerAttributes>().Minerals += Minerals;
+        Player.GetComponent<PlayerAttributes>().Vitamins += Vitamins;
+        Player.GetComponent<PlayerAttributes>().Water += Water;
 
         // Play eating sound
         //eatSound.Play();

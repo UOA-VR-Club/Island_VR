@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Attributes : MonoBehaviour
+public class PlayerAttributes : MonoBehaviour
 {
     // Starting value for player's health points
     public float HealthPoints = 100;
