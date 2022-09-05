@@ -1,11 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Stores information about the state of a GameObject,
+/// where the GameObject can be stored in the player's inventory.
+/// </summary>
 public class Item : MonoBehaviour
 {
-    public bool inSlot; //boolean for whether it is in a slot
-    public Vector3 slotRotation = Vector3.zero;
-    public Slot currentSlot; //if inSlot is true, this stores the slot that it is in
+    // Boolean for whether this GameObject is in a slot
+    public bool IsInSlot;
 
+    // If inSlot is true, store the slot that the GameObject belongs to
+    public Slot CurrentSlot;
+
+    // Rotate the object as the slot rotates
+    public Vector3 SlotRotation = Vector3.zero;
 }

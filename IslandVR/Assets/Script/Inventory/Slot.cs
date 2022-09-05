@@ -1,83 +1,87 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class Slot : MonoBehaviour
 {
-    public GameObject ItemInSlot; //stores item that is in this slot
-    public Image slotImage;
-    Color originalColour;
-    public InputActionReference activateReference = null; //this inputactionreference is linked to the grip action. To find the input actions, go to assets, samples, xr interaction toolkit... keep going and then click default input actions
+    public GameObject StoredItem;
+    public Image SlotImage;
+    public InputActionReference GripAction = null;
+    private Color originalColor;
 
-
-    // Start is called before the first frame update
+    /// <summary>
+    /// Called before the first frame is updated.
+    /// </summary>
     void Start()
     {
-        slotImage = GetComponentInChildren<Image>();
-        originalColour = slotImage.color;
+        SlotImage = GetComponentInChildren<Image>();
+        originalColor = SlotImage.color;
     }
 
-    // When 'other' gameobject touches this gameobject (the slot), if it is an item and if this slot is empty, then put that gameobject into this slot
+    /// <summary>
+    /// Handle Unity message to begin consuming the product.
+    /// When the other GameObject touches this Slot GameObject,
+    /// put the other GameObject in this Slot, provided that
+    /// the other GameObject is an Item and Slot is empty.
+    /// </summary>
+    /// <param name="other">GameObject with Collider component.</param>
     private void OnTriggerStay(Collider other)
     {
-        if (ItemInSlot != null) return;
+        if (StoredItem != null) return;
         if (!IsItem(other.gameObject)) return;
-        if(activateReference.action.ReadValue<float>() == (float) 0)
-        {
+        if (GripAction.action.ReadValue<float>() == 0f)
             InsertItem(other.gameObject);
-        }
     }
 
-    // If the item exiting is the one that was in the slot, then call the remove item function. the action.ReadValue is checking that the grip is released
+    /// <summary>
+    /// Handle Unity message to begin consuming the product.
+    /// Remove other GameObject from slot, provided that said
+    /// GameObject is the one exiting from the slot, and that
+    /// the grip on the XR controller has been released.
+    /// </summary>
+    /// <param name="other">GameObject with Collider component.</param>
     private void OnTriggerExit(Collider other)
     {
-        if(!GameObject.ReferenceEquals(ItemInSlot, other.gameObject)) return;
-        if(activateReference.action.ReadValue<float>() != (float) 0)
-        {
+        if(!GameObject.ReferenceEquals(StoredItem, other.gameObject)) return;
+        if(GripAction.action.ReadValue<float>() != 0f)
             RemoveItem(other.gameObject);
-        }
     }
 
-    bool IsItem(GameObject obj)
+    private bool IsItem(GameObject other)
     {
-        return obj.GetComponent<Item>();
+        return other.GetComponent<Item>();
     }
 
-    void InsertItem(GameObject obj)
+    private void InsertItem(GameObject other)
     {
-        //obj.GetComponent<Rigidbody>().isKinematic = true;
-        obj.GetComponent<Rigidbody>().useGravity = false;
-        obj.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        obj.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
-        obj.transform.SetParent(gameObject.transform, true);
-        obj.transform.localPosition = Vector3.zero;
-        obj.transform.localEulerAngles = obj.GetComponent<Item>().slotRotation;
-        obj.GetComponent<Item>().inSlot = true;
-        obj.GetComponent<Item>().currentSlot = this;
-        ItemInSlot = obj;
-        slotImage.color = Color.gray;
+        //other.GetComponent<Rigidbody>().isKinematic = true;
+        other.GetComponent<Rigidbody>().useGravity = false;
+        other.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        other.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+        
+        other.transform.SetParent(gameObject.transform, true);
+        other.transform.localPosition = Vector3.zero;
+        other.transform.localEulerAngles = other.GetComponent<Item>().SlotRotation;
+        
+        other.GetComponent<Item>().IsInSlot = true;
+        other.GetComponent<Item>().CurrentSlot = this;
+        
+        StoredItem = other;
+        SlotImage.color = Color.gray;
     }
 
-    void RemoveItem(GameObject obj)
+    private void RemoveItem(GameObject other)
     {
         //obj.GetComponent<Rigidbody>().isKinematic = false;
-        obj.transform.parent = null;
-        obj.GetComponent<Item>().inSlot = false;
-        obj.GetComponent<Item>().currentSlot = null;
-        ItemInSlot = null;
+        other.transform.parent = null;
+        other.GetComponent<Item>().IsInSlot = false;
+        other.GetComponent<Item>().CurrentSlot = null;
+        StoredItem = null;
         ResetColor();
     }
 
-    public void ResetColor()
+    private void ResetColor()
     {
-        slotImage.color = originalColour;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        SlotImage.color = originalColor;
     }
 }
