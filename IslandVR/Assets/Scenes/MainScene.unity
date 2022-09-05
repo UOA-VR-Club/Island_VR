@@ -644,9 +644,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac12997f863b0d6498ec6bbf3aebc157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemInSlot: {fileID: 0}
-  slotImage: {fileID: 0}
-  activateReference: {fileID: -3187604292147355658, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  StoredItem: {fileID: 0}
+  SlotImage: {fileID: 0}
+  GripAction: {fileID: 0}
 --- !u!1001 &236800322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -741,10 +741,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nutrientValues: 000000000000000000000000000000000000000000000000
-  player: {fileID: 0}
-  eatSound: {fileID: 0}
-  activateButton: {fileID: 0}
+  Player: {fileID: 0}
+  EatSound: {fileID: 0}
+  ActivateControl: {fileID: 0}
+  Proteins: 0
+  Carbohydrates: 0
+  Fats: 0
+  Minerals: 0
+  Vitamins: 0
+  Water: 0
 --- !u!114 &236800325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,9 +762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bf09714f8f06744bfb8f78fc06faab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inSlot: 0
-  slotRotation: {x: 0, y: 0, z: 0}
-  currentSlot: {fileID: 0}
+  IsInSlot: 0
+  CurrentSlot: {fileID: 0}
+  SlotRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &236800326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,10 +1191,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nutrientValues: 000000000000000000000000000000000000000000000000
-  player: {fileID: 0}
-  eatSound: {fileID: 0}
-  activateButton: {fileID: 0}
+  Player: {fileID: 0}
+  EatSound: {fileID: 0}
+  ActivateControl: {fileID: 0}
+  Proteins: 0
+  Carbohydrates: 0
+  Fats: 0
+  Minerals: 0
+  Vitamins: 0
+  Water: 0
 --- !u!114 &273981372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,9 +1212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bf09714f8f06744bfb8f78fc06faab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inSlot: 0
-  slotRotation: {x: 0, y: 0, z: 0}
-  currentSlot: {fileID: 0}
+  IsInSlot: 0
+  CurrentSlot: {fileID: 0}
+  SlotRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &275903048
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,9 +2022,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bf09714f8f06744bfb8f78fc06faab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inSlot: 0
-  slotRotation: {x: 0, y: 0, z: 0}
-  currentSlot: {fileID: 0}
+  IsInSlot: 0
+  CurrentSlot: {fileID: 0}
+  SlotRotation: {x: 0, y: 0, z: 0}
 --- !u!135 &421843685
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3454,10 +3464,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nutrientValues: 640000000000000000000000000000000000000000000000
-  player: {fileID: 1483372186}
-  eatSound: {fileID: 836488370}
-  activateButton: {fileID: -7603705087647937607, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  Player: {fileID: 0}
+  EatSound: {fileID: 0}
+  ActivateControl: {fileID: 0}
+  Proteins: 0
+  Carbohydrates: 0
+  Fats: 0
+  Minerals: 0
+  Vitamins: 0
+  Water: 0
 --- !u!114 &668746475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3470,9 +3485,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bf09714f8f06744bfb8f78fc06faab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inSlot: 0
-  slotRotation: {x: 0, y: 0, z: 0}
-  currentSlot: {fileID: 0}
+  IsInSlot: 0
+  CurrentSlot: {fileID: 0}
+  SlotRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &673431087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3645,10 +3660,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0c48e4e7a46ac42b31508e76f6d40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 500
-  treeFall: {fileID: 248027740}
-  coconutChop: {fileID: 1630871719}
-  normalChop: {fileID: 329905605}
+  TreeHealthPoints: 500
+  TreeFallSound: {fileID: 0}
+  CoconutChopSound: {fileID: 0}
+  NormalChopSound: {fileID: 0}
 --- !u!136 &727695071
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4244,14 +4259,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ed412200e905c43abaf978ddebfae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1483372186}
-  attributes: {fileID: 865879795}
-  proteinValue: {fileID: 910030159}
-  carbohydrateValue: {fileID: 430091709}
-  fatValue: {fileID: 1463357355}
-  mineralValue: {fileID: 275903048}
-  vitaminValue: {fileID: 553943207}
-  waterValue: {fileID: 1916586620}
+  Player: {fileID: 0}
+  ProteinDisplay: {fileID: 0}
+  CarbohydrateDisplay: {fileID: 0}
+  FatDisplay: {fileID: 0}
+  MineralDisplay: {fileID: 0}
+  VitaminDisplay: {fileID: 0}
+  WaterDisplay: {fileID: 0}
 --- !u!1 &897863283
 GameObject:
   m_ObjectHideFlags: 0
@@ -4696,8 +4710,8 @@ GameObject:
   - component: {fileID: 978291998}
   - component: {fileID: 978291997}
   - component: {fileID: 978291996}
-  - component: {fileID: 978291999}
   - component: {fileID: 978292000}
+  - component: {fileID: 978291999}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -4762,12 +4776,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 978291995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 894884642396a214699ac7cfa1a06d54, type: 3}
+  m_Script: {fileID: 11500000, guid: 30e7ad4e7d8706e4eb410f798a94f6a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inventory: {fileID: 1138940982}
+  Pane: {fileID: 1039543851}
   Anchor: {fileID: 510677437}
-  lefthandPrimaryReference: {fileID: 2169764721175807945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  ActionButton: {fileID: 4460231987460919998, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &978292000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4777,12 +4791,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 978291995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d033f099d3351b40b5d805c06002db8, type: 3}
+  m_Script: {fileID: 11500000, guid: 30e7ad4e7d8706e4eb410f798a94f6a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attributes: {fileID: 1039543851}
-  anchor: {fileID: 510677437}
-  lefthandSecondaryReference: {fileID: 4460231987460919998, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  Pane: {fileID: 1138940982}
+  Anchor: {fileID: 510677437}
+  ActionButton: {fileID: 2169764721175807945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &1028914372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4903,18 +4917,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9561803c8862f498697fa4fbdc507c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
-  speed: 0
-  strength: 0
-  stamina: 0
-  water: 100
-  minerals: 100
-  vitamins: 100
-  carbohydrates: 100
-  proteins: 100
-  fats: 100
-  timer: 0
-  decayTime: 1
+  HealthPoints: 100
+  Speed: 0
+  Strength: 0
+  Stamina: 0
+  Proteins: 100
+  Carbohydrates: 100
+  Fats: 100
+  Minerals: 100
+  Vitamins: 100
+  Water: 100
+  Timer: 0
+  DecayTime: 1
 --- !u!1 &1076254230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1413941736838666, guid: 99a17c21e2c114ae7ac1b19504a46423, type: 3}
@@ -5524,9 +5538,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac12997f863b0d6498ec6bbf3aebc157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemInSlot: {fileID: 0}
-  slotImage: {fileID: 0}
-  activateReference: {fileID: -3187604292147355658, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  StoredItem: {fileID: 0}
+  SlotImage: {fileID: 0}
+  GripAction: {fileID: 0}
 --- !u!1 &1463357355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5635,18 +5649,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9561803c8862f498697fa4fbdc507c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
-  speed: 0
-  strength: 0
-  stamina: 0
-  water: 100
-  minerals: 100
-  vitamins: 100
-  carbohydrates: 100
-  proteins: 100
-  fats: 100
-  timer: 0
-  decayTime: 1
+  HealthPoints: 100
+  Speed: 0
+  Strength: 0
+  Stamina: 0
+  Proteins: 100
+  Carbohydrates: 100
+  Fats: 100
+  Minerals: 100
+  Vitamins: 100
+  Water: 100
+  Timer: 0
+  DecayTime: 1
 --- !u!4 &1483372188
 Transform:
   m_ObjectHideFlags: 0
@@ -6229,9 +6243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac12997f863b0d6498ec6bbf3aebc157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemInSlot: {fileID: 0}
-  slotImage: {fileID: 0}
-  activateReference: {fileID: -3187604292147355658, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  StoredItem: {fileID: 0}
+  SlotImage: {fileID: 0}
+  GripAction: {fileID: 0}
 --- !u!1001 &1704665369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6318,9 +6332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bf09714f8f06744bfb8f78fc06faab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inSlot: 0
-  slotRotation: {x: 0, y: 0, z: 0}
-  currentSlot: {fileID: 0}
+  IsInSlot: 0
+  CurrentSlot: {fileID: 0}
+  SlotRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &1704665372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6333,10 +6347,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbc942052db20fa4a9a4f8e2501388f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nutrientValues: 000000000000000000000000000000000000000000000000
-  player: {fileID: 0}
-  eatSound: {fileID: 0}
-  activateButton: {fileID: 0}
+  Player: {fileID: 0}
+  EatSound: {fileID: 0}
+  ActivateControl: {fileID: 0}
+  Proteins: 0
+  Carbohydrates: 0
+  Fats: 0
+  Minerals: 0
+  Vitamins: 0
+  Water: 0
 --- !u!1 &1774419549 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1103374741572604, guid: 99a17c21e2c114ae7ac1b19504a46423, type: 3}
@@ -6354,9 +6373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bf09714f8f06744bfb8f78fc06faab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inSlot: 0
-  slotRotation: {x: 0, y: 0, z: 0}
-  currentSlot: {fileID: 0}
+  IsInSlot: 0
+  CurrentSlot: {fileID: 0}
+  SlotRotation: {x: 0, y: 0, z: 0}
 --- !u!135 &1774419552
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7069,9 +7088,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac12997f863b0d6498ec6bbf3aebc157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemInSlot: {fileID: 0}
-  slotImage: {fileID: 0}
-  activateReference: {fileID: -3187604292147355658, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  StoredItem: {fileID: 0}
+  SlotImage: {fileID: 0}
+  GripAction: {fileID: 0}
 --- !u!1001 &1882597933
 PrefabInstance:
   m_ObjectHideFlags: 0
