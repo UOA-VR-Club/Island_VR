@@ -1,37 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Attributes : MonoBehaviour
 {
-    public float healthPoints = 100;
-    public float speed,strength,stamina;
-    public float water = 100,minerals = 100,vitamins = 100,carbohydrates = 100,proteins = 100,fats = 100;
+    // Starting value for player's health points
+    public float HealthPoints = 100;
 
-    public float timer = 0;
-    public float decayTime = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Starting values for player's quality attributes
+    public float Speed;
+    public float Strength;
+    public float Stamina;
 
-    // Update is called once per frame
+    // Starting values for player's health attributes
+    public float Proteins = 100;
+    public float Carbohydrates = 100;
+    public float Fats = 100;
+    public float Minerals = 100;
+    public float Vitamins = 100;
+    public float Water = 100;
+
+    // Game elements, useful to determine when player's health attributes
+    // are to be updated
+    public float Timer = 0;
+    public float DecayTime = 1;
+
+    /// <summary>
+    /// Update player's health attributes.
+    /// </summary>
     void Update()
     {
-        //Debug.Log("player alive");
-        timer += Time.deltaTime;
+        Timer += Time.deltaTime;
 
-        if(timer > decayTime)
+        if (Timer > DecayTime)
         {
-            //Debug.Log("reached timer");
-            timer -= decayTime;
-            water -= 1;
-            minerals -= 1;
-            vitamins -= 1;
-            carbohydrates -= 1;
-            proteins -= 1;
-            fats -= 1;
+            Timer -= DecayTime;
+            Water -= 1;
+            Minerals -= 1;
+            Vitamins -= 1;
+            Carbohydrates -= 1;
+            Proteins -= 1;
+            Fats -= 1;
         }
     }
 }

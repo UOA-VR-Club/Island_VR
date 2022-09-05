@@ -1,53 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 
+/// <summary>
+/// Attaches to GameObjects that can modify the player's health attributes.
+/// </summary>
 public class Consumable : MonoBehaviour
 {
-    //elements are indexed from 0 to 5, referring to protein,carbohydrate,fat,mineral,vitamin,water respectively
-    public int[] nutrientValues = new int[6];
-    public GameObject player;
-    public AudioSource eatSound;
-    public InputActionReference activateButton = null;
- 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject Player;
+    public AudioSource EatSound;
+    public InputActionReference ActivateControl;
 
-    // Update is called once per frame
-    void Update()
-    {
+    public float Proteins;
+    public float Carbohydrates;
+    public float Fats;
+    public float Minerals;
+    public float Vitamins;
+    public float Water;
 
-    }
-
-    public void OnTriggerStay(Collider other)
+    /// <summary>
+    /// Handle Unity message to begin consuming the product.
+    /// This Consumable GameObject must be held to the camera such that
+    /// its Collider component collides with the camera's Collider component.
+    /// Then the player should activate the control to cause consuming this
+    /// Consumable GameObject.
+    /// </summary>
+    /// <param name="other">GameObject with Collider component.</param>
+    private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.name == "Main Camera" && activateButton.action.ReadValue<float>() != (float)0)
+        if (other.gameObject.name == "Main Camera" && ActivateControl.action.ReadValue<float>() != (float)0)
         {
-            consume();
+            Consume();
         }
     }
 
-    public void consume()
+    /// <summary>
+    /// Tell player to consume this Consumable GameObject.
+    /// Hence, the player's health attributes are updated accordingly.
+    /// This Consumable GameObject also disappears, as it has been consumed.
+    /// </summary>
+    private void Consume()
     {
-        //change player nutrient values
-        player.GetComponent<Attributes>().proteins += nutrientValues[0];
-        player.GetComponent<Attributes>().carbohydrates += nutrientValues[1];
-        player.GetComponent<Attributes>().fats += nutrientValues[2];
-        player.GetComponent<Attributes>().minerals += nutrientValues[3];
-        player.GetComponent<Attributes>().vitamins += nutrientValues[4];
-        player.GetComponent<Attributes>().water += nutrientValues[5];
+        // Change player nutrient values
+        Player.GetComponent<Attributes>().Proteins += Proteins;
+        Player.GetComponent<Attributes>().Carbohydrates += Carbohydrates;
+        Player.GetComponent<Attributes>().Fats += Fats;
+        Player.GetComponent<Attributes>().Minerals += Minerals;
+        Player.GetComponent<Attributes>().Vitamins += Vitamins;
+        Player.GetComponent<Attributes>().Water += Water;
 
-        
-        //play eating sound
+        // Play eating sound
         //eatSound.Play();
 
-
-        //make consumable disappear
+        // Make consumable disappear
         this.gameObject.SetActive(false);
     }
 }
