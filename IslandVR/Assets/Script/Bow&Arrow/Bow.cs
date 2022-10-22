@@ -20,6 +20,7 @@ public class Bow : XRGrabInteractable
         // Only notch an arrow if the bow is held
         selectEntered.AddListener(notch.SetReady);
         selectExited.AddListener(notch.SetReady);
+        Debug.Log("lol");
     }
 
     protected override void OnDisable()
