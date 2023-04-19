@@ -4,8 +4,14 @@ ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 1827226128182048838
-    second: Take 001
+      74: -3196833704922977070
+    second: SnakeMove
+  - first:
+      74: -8850206553506967656
+    second: SnakeAttack
+  - first:
+      74: 342738244000906827
+    second: SnakeDeath
   externalObjects: {}
   materials:
     materialImportMode: 2
