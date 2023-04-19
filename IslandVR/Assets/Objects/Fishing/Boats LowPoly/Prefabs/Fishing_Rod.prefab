@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5435530952517474718}
   - component: {fileID: 7821087701756620116}
   - component: {fileID: 4139197610404483318}
+  - component: {fileID: 6100992002701402260}
   m_Layer: 0
   m_Name: Fishing_Rod
   m_TagString: Untagged
@@ -56,6 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &4139197610404483318
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -94,3 +97,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7206472575975855354, guid: f3af3c356e2ae6346893512397408e38, type: 3}
+--- !u!114 &6100992002701402260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8613954126185663617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b076f9e6f4c94c43ab23f6f343a8d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivateControl: {fileID: 0}
+  durability: 100
