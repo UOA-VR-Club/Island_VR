@@ -67,14 +67,11 @@ public class SnakeBehave : MonoBehaviour
             }
 
             //if the direction is suitable, play attack animation and stop moving
-            if (enemydistance < 3.5 && SnakeEscape == false && timer >= attackSilence && angle < 30 * snakeRotSpeed)
+            if (enemydistance < 3.2 && SnakeEscape == false && timer >= attackSilence && angle < 30 * snakeRotSpeed)
             {
                 snakeAnim.SetBool("attackpropose", true);
                 timer = 0;
-                if (enemydistance < 3.48)
-                {
-                    Snakemoving = false;
-                }
+                Snakemoving = false;
             }
             this.transform.Translate(0, 0, snakeHighSpeed, Space.Self);
         }
@@ -113,17 +110,17 @@ public class SnakeBehave : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        if (collision.gameObject.tag == "target" &&  timer < 100)
+        if (collision.gameObject.tag == "target" &&  timer < 100 && timer >10)
         {
             timer = 100;
             Debug.Log("A successful attack");
+
         }
 
         if (collision.gameObject.tag == "weapon")
         {
-            Vector3 snakepos = this.transform.localPosition;
-            Quaternion snakerot = Quaternion.LookRotation(this.transform.forward);
-            snakerot.y += 180;
+            Vector3 snakepos = this.transform.position;
+            Quaternion snakerot = this.transform.rotation;
             GameObject node = Object.Instantiate(snakebody, snakepos, snakerot, null);
             
             Destroy(this.gameObject);

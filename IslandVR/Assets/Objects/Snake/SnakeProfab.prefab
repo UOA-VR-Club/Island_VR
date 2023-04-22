@@ -723,7 +723,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3796526624010527999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ef099756175334492db1c5d550aafe, type: 3}
+  m_Script: {fileID: 11500000, guid: de93c1cffb596354f9e76b21fa4ed3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   snakeAnim: {fileID: 1653489479584544311}
