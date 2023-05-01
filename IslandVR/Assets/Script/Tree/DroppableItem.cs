@@ -24,10 +24,10 @@ namespace Script.Tree
 
         private void SpawnItems()
         {
-            var numberOfItems = Random.Range(1, maxItems);
+            var numberOfItems = maxItems == 1 ? 1 : Random.Range(1, maxItems);
             for (int i = 0; i < numberOfItems; i++)
             {
-                GameObject log = Instantiate(prefab, transform.position, Quaternion.identity);
+                GameObject log = Instantiate(prefab, transform.position + new Vector3(0.0f, 1, 0.0f), Quaternion.identity);
                 log.AddComponent<Rigidbody>();
                 items.Add(log);
             }
