@@ -1,15 +1,23 @@
 using UnityEngine;
 using System;
-
+using Script.Tree;
 
 public class TreeSplit : MonoBehaviour
 {
-    public int TreeHealthPoints = 500;
-    public AudioSource TreeFallSound;
-    public AudioSource CoconutChopSound;
-    public AudioSource NormalChopSound;
-    private readonly System.Random r = new System.Random();
+    //sound effects
+    [SerializeField] private AudioSource TreeFallSound;
+    [SerializeField] private AudioSource CoconutChopSound;
+    [SerializeField] private AudioSource NormalChopSound;
+    
+    // Item drops
+    [SerializeField] private DroppableItem log;
+    [SerializeField] private DroppableItem grub;
+        
+    // Tree health = 500
+    [SerializeField] private int TreeHealthPoints;
 
+    private readonly System.Random r = new System.Random();
+    
     /// <summary>
     /// Called whenever a GameObject with Collision attribute hits tree.
     /// </summary>
@@ -20,19 +28,25 @@ public class TreeSplit : MonoBehaviour
 
         // There is a 20% chance of coconut falling when the coconut tree is chopped
         if (r.Next(5) == 1)
-            CoconutDrop();
+            DropCoconut();
         else
             NormalChopSound.Play();
 
         TreeHealthPoints = Math.Max(TreeHealthPoints - 40, 0);
         if (TreeHealthPoints == 0)
+        {
             SplitTree();
+            log.DropItems();
+            // There is a 20% chance of grubs generated
+            if (r.Next(5) == 1)
+                grub.DropItems();
+        }
     }
 
     /// <summary>
     /// Drop a coconut from the tree (surprise)!
     /// </summary>
-    private void CoconutDrop()
+    private void DropCoconut()
     {
         try
         {
@@ -45,10 +59,9 @@ public class TreeSplit : MonoBehaviour
                 CoconutChopSound.Play();
             }
         }
-        catch (NullReferenceException n)
+        catch (NullReferenceException exception)
         {
-            var error = n;
-            
+            Debug.Log(exception);
         }
     }
 
