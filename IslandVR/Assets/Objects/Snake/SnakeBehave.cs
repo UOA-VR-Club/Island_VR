@@ -7,7 +7,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class SnakeBehave : MonoBehaviour
 {
-    private string targetName;
     private float snakeTracking;
     private float snakeLowSpeed;
     private float snakeHighSpeed;
@@ -27,7 +26,6 @@ public class SnakeBehave : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        targetName = "SnakeTarget";
         snakeTracking = 12f;
         snakeLowSpeed = 0.01f;
         snakeHighSpeed = 0.02f;
@@ -44,7 +42,7 @@ public class SnakeBehave : MonoBehaviour
     {
         //Make a judgement according to the distence between snake and enimy
         Vector3 snakepos = this.transform.localPosition;
-        GameObject snaketarget = GameObject.Find(targetName);
+        GameObject snaketarget = GameObject.FindWithTag("target");
         float enemydistance = Vector3.Distance(this.transform.position, snaketarget.transform.position);
         if (enemydistance <= snakeTracking && Snakemoving == true)
         {
